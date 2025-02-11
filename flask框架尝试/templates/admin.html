@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+    <!-- 导入要使用的css -->
+    <link rel="stylesheet" href="/static/CSS/bootstrap.css">
+</head>
+<body>
+<table class="table">
+  <thead>
+    <tr>
+
+      <th scope="col">Name</th>
+      <th scope="col">Working_hours</th>
+      <th scope="col">Upload_file_numbers</th>
+      <th scope="col">Risky_web_visits</th>
+    </tr>
+  </thead>
+  <tbody>
+  <!--需要将python对象的数据显示到浏览器上，要使用模版语法
+  用的比较多的是jinjia2（flask），numjucks(javascript) moka(django)
+  jinjia2 可以直接在html中写python语句-->
+  {# <!--比如{{ users }}就可以显示我们传入的字典--> #}
+   <!-- <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>10</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    -->
+  {# <!--jinjia2语法,把python放在{{  }}或者{%  %}里--> #}
+  {% for user in users %}
+  <tr>
+
+      <td>{{ user.name }}</td>
+      <td>{{ user.working_hours }}</td>
+      <td>{{ user.upload_file_numbers }}</td>
+      <td>{{ user.risky_web_visits }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</body>
+</html>
