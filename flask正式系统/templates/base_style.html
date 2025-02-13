@@ -1,0 +1,164 @@
+<style>
+    :root {
+        --sidebar-width: 250px;
+        --github-bg: #f6f8fa;
+        --github-border: #d0d7de;
+        --github-link: #0969da;
+        --github-text: #24292f;
+        --github-success: #2da44e;
+        --github-danger: #cf222e;
+        --github-warning: #bf8700;
+    }
+    
+    body {
+        background-color: var(--github-bg);
+        color: var(--github-text);
+    }
+    
+    .sidebar {
+        width: var(--sidebar-width);
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        background: linear-gradient(180deg, #24292f 0%, #1c2128 100%);
+        padding-top: 60px;
+        color: white;
+        z-index: 100;
+        border-right: 1px solid var(--github-border);
+    }
+    
+    .main-content {
+        margin-left: var(--sidebar-width);
+        padding: 20px;
+        padding-top: 80px;
+    }
+    
+    .top-nav {
+        position: fixed;
+        top: 0;
+        left: var(--sidebar-width);
+        right: 0;
+        height: 60px;
+        background-color: white;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.075);
+        z-index: 99;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--github-border);
+    }
+    
+    .nav-link {
+        color: rgba(255,255,255,0.7);
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        transition: all 0.2s ease;
+        border-radius: 6px;
+        margin: 4px 8px;
+    }
+    
+    .nav-link:hover {
+        background-color: rgba(255,255,255,0.1);
+        color: white;
+    }
+    
+    .nav-link.active {
+        background-color: #ffffff1a;
+        color: white;
+        font-weight: 600;
+    }
+    
+    .nav-link i {
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+    }
+    
+    .card {
+        border: 1px solid var(--github-border);
+        border-radius: 6px;
+        box-shadow: 0 1px 0 rgba(27,31,36,0.04);
+        margin-bottom: 20px;
+        transition: box-shadow 0.2s ease;
+        background-color: white;
+    }
+    
+    .card:hover {
+        box-shadow: 0 4px 8px rgba(27,31,36,0.08);
+    }
+    
+    .card-header {
+        background-color: white;
+        border-bottom: 1px solid var(--github-border);
+        padding: 16px 20px;
+        font-weight: 600;
+    }
+    
+    .system-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: white;
+        padding: 0 20px;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .system-title i {
+        margin-right: 10px;
+    }
+    
+    .btn {
+        border-radius: 6px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+    
+    .btn-primary {
+        background-color: var(--github-success);
+        border-color: rgba(27,31,36,0.15);
+    }
+    
+    .btn-primary:hover {
+        background-color: #2c974b;
+        border-color: rgba(27,31,36,0.15);
+    }
+    
+    .btn-outline-secondary {
+        color: var(--github-text);
+        border-color: var(--github-border);
+    }
+    
+    .btn-outline-secondary:hover {
+        background-color: var(--github-bg);
+        border-color: var(--github-text);
+        color: var(--github-text);
+    }
+    
+    .form-control {
+        border-color: var(--github-border);
+        border-radius: 6px;
+    }
+    
+    .form-control:focus {
+        border-color: var(--github-link);
+        box-shadow: 0 0 0 3px rgba(9,105,218,0.3);
+    }
+    
+    .table {
+        margin-bottom: 0;
+    }
+    
+    .table th {
+        background-color: var(--github-bg);
+        border-bottom-color: var(--github-border);
+    }
+    
+    .badge {
+        font-weight: 500;
+        padding: 4px 8px;
+    }
+</style> 

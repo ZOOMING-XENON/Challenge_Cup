@@ -1,0 +1,121 @@
+/* 整体页面样式 */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #8e2de2, #4a00e0);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 导航栏样式 */
+.navbar {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 10px 10px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: #8e2de2;
+}
+
+.navbar-toggler {
+    border: none;
+    outline: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-collapse {
+    justify-content: space-between;
+}
+
+.nav-link {
+    color: #333;
+    font-size: 16px;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-link::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #8e2de2;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::before {
+    width: 100%;
+}
+
+.nav-link.active {
+    color: #8e2de2;
+}
+
+.nav-link.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+/* 下拉菜单样式 */
+.dropdown-menu {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 10px;
+}
+
+.dropdown-item {
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.dropdown-item:hover {
+    color: #8e2de2;
+    background-color: #f8f9fa;
+}
+
+.dropdown-divider {
+    border-color: #e9ecef;
+}
+
+/* 搜索框样式 */
+form.d-flex {
+    align-items: center;
+}
+
+.form-control {
+    border-radius: 20px;
+    border: none;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn.btn-outline-success {
+    border-radius: 20px;
+    border-color: #8e2de2;
+    color: #8e2de2;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn.btn-outline-success:hover {
+    background-color: #8e2de2;
+    color: #fff;
+}

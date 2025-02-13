@@ -1,0 +1,280 @@
+{% extends "base.html" %}
+
+{% block title %}概览 - 企业安全管理系统{% endblock %}
+
+{% block extra_head %}
+<!-- ApexCharts -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+{% endblock %}
+
+{% block extra_style %}
+/* 确保主内容区域不被侧边栏遮挡 */
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: 20px;
+    padding-top: 80px;
+}
+
+/* 统一系统标题样式 */
+.system-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    padding: 0 20px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.system-title i {
+    margin-right: 10px;
+}
+
+/* 统一导航链接样式 */
+.nav-link {
+    margin: 4px 16px;
+}
+
+.stat-card {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: white;
+}
+
+.stat-info h3 {
+    font-size: 24px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.stat-info p {
+    margin: 5px 0 0;
+    color: var(--color-fg-muted);
+    font-size: 14px;
+}
+
+.chart-container {
+    min-height: 300px;
+    padding: 16px;
+}
+
+.card-title {
+    padding: 16px;
+    margin: 0;
+    border-bottom: 1px solid var(--color-border-default);
+    font-weight: 600;
+}
+{% endblock %}
+
+{% block content %}
+<!-- 侧边栏 -->
+<div class="sidebar">
+    <div class="system-title">
+        <i class="fas fa-shield-alt"></i>
+        企业安全管理系统
+    </div>
+    <nav class="nav flex-column">
+        <a class="nav-link active" href="/overview"><i class="fas fa-tachometer-alt"></i> 概览</a>
+        <a class="nav-link" href="/admin"><i class="fas fa-users"></i> 员工管理</a>
+        <a class="nav-link" href="#"><i class="fas fa-globe"></i> 上网审计管控</a>
+        <a class="nav-link" href="#"><i class="fas fa-database"></i> 数据备份与监测</a>
+        <a class="nav-link" href="#"><i class="fas fa-chart-line"></i> 行为分析</a>
+        <a class="nav-link" href="#"><i class="fas fa-lock"></i> 勒索防护</a>
+        <a class="nav-link" href="#"><i class="fas fa-cog"></i> 软件管理</a>
+    </nav>
+</div>
+
+<!-- 顶部导航栏 -->
+<div class="top-nav">
+    <div class="d-flex align-items-center">
+        <i class="fas fa-bars me-3"></i>
+        <span>系统概览</span>
+    </div>
+    <div class="d-flex align-items-center">
+        <span class="me-3"><i class="fas fa-bell"></i></span>
+        <span class="me-3"><i class="fas fa-user"></i> 管理员</span>
+        <a href="/logout" class="btn btn-outline-secondary btn-sm">退出</a>
+    </div>
+</div>
+
+<!-- 主要内容区域 -->
+<div class="main-content">
+    <!-- 统计卡片 -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>{{ total_users }}</h3>
+                        <p>员工总数</p>
+                    </div>
+                    <div class="stat-icon" style="background-color: var(--color-accent-emphasis);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>{{ avg_working_hours|round(1) }}</h3>
+                        <p>平均工作时长</p>
+                    </div>
+                    <div class="stat-icon" style="background-color: var(--color-success-emphasis);">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>{{ total_uploads }}</h3>
+                        <p>文件上传总数</p>
+                    </div>
+                    <div class="stat-icon" style="background-color: var(--color-danger-emphasis);">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>{{ total_risks }}</h3>
+                        <p>风险访问总数</p>
+                    </div>
+                    <div class="stat-icon" style="background-color: var(--color-warning-emphasis);">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 图表区域 -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">工作时长分布</h5>
+                    <div id="workingHoursChart" class="chart-container"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">风险行为分析</h5>
+                    <div id="riskChart" class="chart-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // 工作时长图表
+    var workingHoursOptions = {
+        series: [{
+            name: '工作时长',
+            data: {{ working_hours_data|tojson }}
+        }],
+        chart: {
+            type: 'bar',
+            height: 300,
+            toolbar: {
+                show: false
+            }
+        },
+        colors: ['#2da44e'],
+        plotOptions: {
+            bar: {
+                borderRadius: 4,
+                horizontal: false,
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        xaxis: {
+            categories: {{ usernames|tojson }},
+            labels: {
+                style: {
+                    fontSize: '12px'
+                }
+            }
+        },
+        theme: {
+            mode: 'light'
+        }
+    };
+
+    // 风险分析图表
+    var riskOptions = {
+        series: [{
+            name: '风险访问',
+            data: {{ risk_data|tojson }}
+        }],
+        chart: {
+            type: 'area',
+            height: 300,
+            toolbar: {
+                show: false
+            }
+        },
+        colors: ['#cf222e'],
+        stroke: {
+            curve: 'smooth'
+        },
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shadeIntensity: 1,
+                opacityFrom: 0.7,
+                opacityTo: 0.3,
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        xaxis: {
+            categories: {{ usernames|tojson }},
+            labels: {
+                style: {
+                    fontSize: '12px'
+                }
+            }
+        },
+        theme: {
+            mode: 'light'
+        }
+    };
+
+    // 等待 DOM 加载完成后再初始化图表
+    document.addEventListener('DOMContentLoaded', function() {
+        var workingHoursChart = new ApexCharts(document.querySelector("#workingHoursChart"), workingHoursOptions);
+        var riskChart = new ApexCharts(document.querySelector("#riskChart"), riskOptions);
+        
+        workingHoursChart.render();
+        riskChart.render();
+    });
+</script>
+{% endblock %} 

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>欢迎 - 企业安全管理系统</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+        }
+        
+        .welcome-container {
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+        
+        .system-icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .welcome-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .welcome-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn-enter {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            background-color: white;
+            color: #2c3e50;
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-enter:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #ecf0f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <i class="fas fa-shield-alt system-icon"></i>
+        <h1 class="welcome-title">企业安全管理系统</h1>
+        <p class="welcome-subtitle">全方位保护您的企业安全</p>
+        <a href="/login" class="btn btn-enter">
+            <i class="fas fa-sign-in-alt me-2"></i>进入系统
+        </a>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.mb-3 {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-text {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+}
+
+.form-check-input {
+    margin-right: 5px;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: rebeccapurple;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #6b41a2;
+}
+/* 表格样式 */
+.table {
+    width: 80%; /* 设置表格宽度 */
+    max-width: 1000px; /* 最大宽度 */
+    border-collapse: collapse; /* 合并边框 */
+    background-color: #fff; /* 表格背景色 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 表格阴影 */
+    border-radius: 8px; /* 表格圆角 */
+    overflow: hidden; /* 隐藏溢出内容 */
+}
+.table thead th {
+    background-color: rebeccapurple; /* 表头背景色 */
+    color: white; /* 表头文字颜色 */
+    padding: 12px; /* 表头内边距 */
+    text-align: left; /* 表头文字左对齐 */
+}
+.table tbody td,
+.table tbody th {
+    padding: 10px; /* 表格单元格内边距 */
+    border-bottom: 1px solid #ddd; /* 表格单元格底部边框 */
+}
+.table tbody tr:last-child td,
+.table tbody tr:last-child th {
+    border-bottom: none; /* 最后一行单元格去掉底部边框 */
+}
+.table tbody tr:hover {
+    background-color: #f5f5f5; /* 鼠标悬停时表格行背景色 */
+}

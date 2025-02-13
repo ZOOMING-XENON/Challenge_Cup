@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}登录 - 企业安全管理系统{% endblock %}
+
+{% block extra_style %}
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(-45deg, 
+        #4a2880,     /* 更深的紫色 */
+        #6039b0,     /* 更深的亮紫色 */
+        #371566,     /* 更深的深紫色 */
+        #4a1775      /* 更深的紫罗兰色 */
+    );
+    background-size: 400% 400%;
+    animation: gradient 8s ease infinite;  /* 从15s改为8s，动画更快 */
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    overflow: hidden;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+.login-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+}
+
+.login-header {
+    text-align: center;
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.login-header h4 {
+    color: #4c1d95;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.login-header p {
+    color: #6b21a8;
+    opacity: 0.8;
+}
+
+.login-body {
+    padding: 30px;
+}
+
+.system-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #6f42c1;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(0.95);
+    }
+}
+
+.form-control {
+    border: 1px solid rgba(107, 33, 168, 0.2);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.form-control:focus {
+    border-color: #6f42c1;
+    box-shadow: 0 0 0 0.25rem rgba(111, 66, 193, 0.25);
+}
+
+.input-group-text {
+    background: rgba(111, 66, 193, 0.1);
+    border: 1px solid rgba(107, 33, 168, 0.2);
+    color: #6f42c1;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #6f42c1, #8250df);
+    border: none;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #8250df, #6f42c1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(111, 66, 193, 0.4);
+}
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <i class="fas fa-shield-alt system-icon"></i>
+            <h4>企业安全管理系统</h4>
+            <p>请登录以继续操作</p>
+        </div>
+        <div class="login-body">
+            <form method="POST" action="/login">
+                <div class="mb-3">
+                    <label for="username" class="form-label">用户名</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="form-label">密码</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt me-2"></i>登录
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
