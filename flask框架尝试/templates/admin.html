@@ -15,6 +15,7 @@
       <th scope="col">Working_hours</th>
       <th scope="col">Upload_file_numbers</th>
       <th scope="col">Risky_web_visits</th>
+      <th scope="col">Operatioin</th>
     </tr>
   </thead>
   <tbody>
@@ -38,9 +39,19 @@
       <td>{{ user.working_hours }}</td>
       <td>{{ user.upload_file_numbers }}</td>
       <td>{{ user.risky_web_visits }}</td>
+      <td><a href="/delete?name={{ user.name }}">delete</a></td>
+      <td><a href="/edit?name={{ user.name }}">edit</a></td>
+      <!--同时发送请求，让每个edit的超链接含有被操作者名字的信息-->
     </tr>
   {% endfor %}
   </tbody>
 </table>
+
+
+<div>
+    <a href="/add"><!--超链接跳转到本目录下的/add的地址http://127.0.0.1:5000/add-->
+        new member
+    </a>
+</div>
 </body>
 </html>
