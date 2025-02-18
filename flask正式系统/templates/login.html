@@ -130,7 +130,8 @@ body {
             <p>请登录以继续操作</p>
         </div>
         <div class="login-body">
-            <form method="POST" action="/login">
+            <form id="loginForm" onsubmit="submitForm(event)">
+                <!--<form method="POST" action="/login">-->
                 <div class="mb-3">
                     <label for="username" class="form-label">用户名</label>
                     <div class="input-group">
@@ -154,4 +155,32 @@ body {
         </div>
     </div>
 </div>
+
+<script>
+    async function submitForm(event) {
+        event.preventDefault();  // 阻止表单默认提交行为
+
+        const form = document.getElementById('loginForm');
+        const formData = new FormData(form);
+
+        // 发送 POST 请求到后端
+        const response = await fetch('/login', {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.status === 'fail') {
+            // 登录失败，弹出提示窗口
+            alert(result.message);
+
+            // 清空表单内容
+            form.reset();
+        } else {
+            // 登录成功，跳转到管理页面
+            window.location.href = '/admin';
+        }
+    }
+</script>
 {% endblock %}

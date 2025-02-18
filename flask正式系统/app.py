@@ -1,4 +1,5 @@
-from flask import Flask,render_template,request,redirect
+from flask import Flask,render_template,request,redirect,jsonify
+from datetime import datetime, timedelta
 
 #render_template是方便路由返回页面的
 # 导入一个flask对象
@@ -21,10 +22,24 @@ users = [
     {'name': 'Ivan', 'working_hours': 7, 'upload_file_numbers': 3, 'risky_web_visits': 2}
 ]
 
+#登陆数据库
+login_data = [
+    {'username': '2777150844@qq.com', 'password': '0000'},
+    {'username': '1', 'password': '1'},
+    {'username': None, 'password': None},
+]
 
+# 监控数据库
 
+# 创建一个全局变量来存储最新接收到的数据和历史记录
+latest_received_data = {
+    "active_window": "等待数据...",
+    "wechat_files": [],
+    "installed_software": []
+}
 
-
+# 添加一个存储微信文件历史记录的字典
+wechat_files_history = {}  # 格式: {文件名: {"first_seen": 时间戳, "last_seen": 时间戳}}
 
 #路由
 @app.route('/')
@@ -35,13 +50,20 @@ def start():  # put application's code here
 def login():
     #return 'Login Page'
     if request.method == 'POST':
-       email_address = request.form.get('email_address')
+       username = request.form.get('username')
        password = request.form.get('password')
+       print(username, password)
        # 用数据库校验账号密码
-       print('Receive Infomation from the web/n','email:',email_address,'/n password:',password)
-       #登陆成功之后，应该跳转到管理页面
-       return redirect('/admin')
+       for user in login_data:
+           if user['username'] == username and user['password'] == password:
+               print("true")
+               # 登陆成功之后，应该跳转到管理页面
+               return jsonify({'status': 'success', 'redirect': '/admin'})
+               #return redirect('/admin')
+            # 遍历完整个列表都没有匹配的用户信息，返回登录失败
+       return jsonify({'status': 'fail', 'message': '登录失败，请检查邮箱或密码'})
     return render_template('login.html')
+
 
 @app.route('/admin')
 def admin():
@@ -128,9 +150,58 @@ def overview():
                          working_hours_data=working_hours_data,
                          risk_data=risk_data)
 
+#因为客户端发送的信息是到这一个路由，所以需要写一个路由来接收信息
+@app.route('/receive_data', methods=['POST'])
+def receive_data():
+    try:
+        data = request.get_json()
+        current_time = datetime.now()
+        
+        # 更新全局变量
+        global latest_received_data, wechat_files_history
+        latest_received_data = {
+            "active_window": data.get('active_window', '无活动窗口'),
+            "wechat_files": data.get('wechat_files', []),
+            "installed_software": data.get('installed_software', [])
+        }
+        
+        # 更新微信文件历史记录
+        for file in data.get('wechat_files', []):
+            if file not in wechat_files_history:
+                wechat_files_history[file] = {
+                    "first_seen": current_time.strftime("%Y-%m-%d %H:%M:%S"),
+                    "last_seen": current_time.strftime("%Y-%m-%d %H:%M:%S")
+                }
+            else:
+                wechat_files_history[file]["last_seen"] = current_time.strftime("%Y-%m-%d %H:%M:%S")
+        
+        # 清理24小时前的记录
+        cutoff_time = current_time - timedelta(hours=24)
+        wechat_files_history = {
+            k: v for k, v in wechat_files_history.items()
+            if datetime.strptime(v["last_seen"], "%Y-%m-%d %H:%M:%S") > cutoff_time
+        }
+        
+        return jsonify({"status": "success", "message": "数据接收成功"})
+        
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/get_latest_data')
+def get_latest_data():
+    # 返回最新数据和历史记录
+    return jsonify({
+        **latest_received_data,
+        "wechat_files_history": wechat_files_history
+    })
+
+@app.route('/monitor')
+def monitor():
+    return render_template('monitor.html')
+
 
 
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)  # 添加 debug=True
+    app.run(debug=True, port=5000)  # 添加 debug=True
