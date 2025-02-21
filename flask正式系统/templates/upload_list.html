@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}上传文件列表 - 企业安全管理系统{% endblock %}
+
+{% block content %}
+<!-- 侧边栏 -->
+<div class="sidebar">
+    <div class="system-title">
+        <i class="fas fa-shield-alt"></i>
+        企业安全管理系统
+    </div>
+    <nav class="nav flex-column">
+        <a class="nav-link" href="/overview"><i class="fas fa-tachometer-alt"></i> 概览</a>
+        <a class="nav-link" href="/admin"><i class="fas fa-users"></i> 员工管理</a>
+        <a class="nav-link" href="/monitor"><i class="fas fa-globe"></i> 上网审计管控</a>
+        <a class="nav-link" href="/upload"><i class="fas fa-upload"></i> 文件上传</a>
+        <a class="nav-link active" href="/upload_list"><i class="fas fa-list"></i> 上传文件列表</a>
+        <a class="nav-link" href="#"><i class="fas fa-database"></i> 数据备份与监测</a>
+        <a class="nav-link" href="#"><i class="fas fa-chart-line"></i> 行为分析</a>
+        <a class="nav-link" href="#"><i class="fas fa-lock"></i> 勒索防护</a>
+        <a class="nav-link" href="#"><i class="fas fa-cog"></i> 软件管理</a>
+    </nav>
+</div>
+
+<!-- 顶部导航栏 -->
+<div class="top-nav">
+    <div class="d-flex align-items-center">
+        <i class="fas fa-bars me-3"></i>
+        <span>上传文件列表</span>
+    </div>
+    <div class="d-flex align-items-center">
+        <span class="me-3"><i class="fas fa-bell"></i></span>
+        <span class="me-3"><i class="fas fa-user"></i> 管理员</span>
+        <a href="/logout" class="btn btn-outline-secondary btn-sm">退出</a>
+    </div>
+</div>
+
+<!-- 主要内容区域 -->
+<div class="main-content">
+    <h2>已上传的EXE文件</h2>
+    <ul class="list-group">
+        {% for file in exe_files %}
+            <li class="list-group-item">{{ file }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %} 

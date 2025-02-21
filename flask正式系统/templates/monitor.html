@@ -260,88 +260,20 @@
 <!-- 主要内容区域 -->
 <div class="main-content">
     <div class="row">
-        <!-- 活动窗口监控 -->
-        <div class="col-md-6">
+        <!-- 员工监控卡片列表 -->
+        <div class="col-12">
             <div class="card monitor-card">
                 <div class="card-body">
                     <h5 class="monitor-title">
                         <div>
-                            <i class="fas fa-window-maximize me-2"></i>活动窗口监控
+                            <i class="fas fa-desktop me-2"></i>员工电脑监控
                         </div>
-                        <span class="monitor-badge">
-                            <i class="fas fa-clock me-1"></i>实时更新
+                        <span class="monitor-badge" id="computerCount">
+                            <i class="fas fa-users me-1"></i>0 位员工
                         </span>
                     </h5>
-                    <div class="monitor-list" id="activeWindowList">
-                        <!-- 动态内容 -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 微信文件监控 -->
-        <div class="col-md-6">
-            <div class="card monitor-card">
-                <div class="card-body">
-                    <h5 class="monitor-title">
-                        <div>
-                            <i class="fab fa-weixin me-2"></i>微信文件监控
-                        </div>
-                        <span class="monitor-badge" id="fileCount">
-                            <i class="fas fa-file me-1"></i>0 个文件
-                        </span>
-                    </h5>
-                    <div class="monitor-list" id="wechatFileList">
-                        <!-- 动态内容 -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 已安装软件 -->
-        <div class="col-md-12">
-            <div class="card monitor-card">
-                <div class="card-body">
-                    <h5 class="monitor-title">
-                        <div>
-                            <i class="fas fa-laptop me-2"></i>已安装软件
-                        </div>
-                        <span class="monitor-badge" id="softwareCount">
-                            <i class="fas fa-cube me-1"></i>0 个应用
-                        </span>
-                    </h5>
-                    <div class="monitor-list" id="installedSoftwareList">
-                        <!-- 动态内容 -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 添加微信文件历史记录卡片 -->
-        <div class="col-md-12 mt-4">
-            <div class="card monitor-card">
-                <div class="card-body">
-                    <h5 class="monitor-title">
-                        <div>
-                            <i class="fab fa-weixin me-2"></i>微信文件传输历史记录
-                        </div>
-                        <span class="monitor-badge" id="historyCount">
-                            <i class="fas fa-history me-1"></i>24小时内记录
-                        </span>
-                    </h5>
-                    <div class="table-responsive">
-                        <table class="history-table" id="fileHistoryTable">
-                            <thead>
-                                <tr>
-                                    <th>文件名</th>
-                                    <th>首次发现时间</th>
-                                    <th>最后发现时间</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- 动态内容 -->
-                            </tbody>
-                        </table>
+                    <div class="row" id="computerList">
+                        <!-- 动态生成员工卡片 -->
                     </div>
                 </div>
             </div>
@@ -349,7 +281,7 @@
     </div>
 </div>
 
-<!-- 添加弹窗 -->
+<!-- 详细信息弹窗 -->
 <div id="detailModal" class="detail-modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -364,176 +296,118 @@
 {% block extra_scripts %}
 <script>
 let previousData = {
-    active_window: '',
-    wechat_files: [],
-    installed_software: [],
-    active_window_history: [],
-    wechat_files_details: {},
-    software_details: {}
+    computers: {}
 };
 
 function updateMonitorData() {
     fetch('/get_latest_data')
         .then(response => response.json())
         .then(data => {
-            // 更新活动窗口
-            if (data.active_window !== previousData.active_window) {
-                const activeWindowList = document.getElementById('activeWindowList');
-                activeWindowList.innerHTML = `
-                    <div class="monitor-item new-item" onclick="showDetails('window')">
-                        <div class="d-flex align-items-center">
-                            <div class="monitor-icon bg-primary">
-                                <i class="fas fa-window-maximize"></i>
-                            </div>
-                            <div class="monitor-info">
-                                <div>${data.active_window}</div>
-                                <div class="monitor-time">
-                                    <span class="monitor-status status-active"></span>
-                                    当前活动
+            const computerList = document.getElementById('computerList');
+            const countDisplay = document.getElementById('computerCount');
+            const computers = data.computers || {};
+            
+            // 更新员工数量
+            const numComputers = Object.keys(computers).length;
+            countDisplay.innerHTML = `
+                <i class="fas fa-users me-1"></i>${numComputers} 位员工
+            `;
+            
+            // 生成员工卡片
+            computerList.innerHTML = Object.entries(computers).map(([computerId, computerInfo]) => `
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100" onclick="showComputerDetails('${computerId}')">
+                        <div class="card-body">
+                            <h6 class="card-title d-flex justify-content-between align-items-center">
+                                <span><i class="fas fa-desktop me-2"></i>${computerId}</span>
+                                <span class="monitor-status status-active"></span>
+                            </h6>
+                            <div class="mt-3">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>当前窗口：</span>
+                                    <span class="text-muted text-truncate" style="max-width: 200px;" title="${computerInfo.active_window}">${computerInfo.active_window}</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>微信文件：</span>
+                                    <span class="badge bg-success">${computerInfo.wechat_files.length}</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>已安装软件：</span>
+                                    <span class="badge bg-info">${computerInfo.installed_software.length}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                `;
-            }
-
-            // 更新微信文件列表
-            const wechatFileList = document.getElementById('wechatFileList');
-            document.getElementById('fileCount').innerHTML = `
-                <i class="fas fa-file me-1"></i>${data.wechat_files.length} 个文件
-            `;
-            
-            const newFilesList = data.wechat_files.map((file, index) => `
-                <div class="monitor-item ${!previousData.wechat_files.includes(file) ? 'new-item' : ''}" 
-                     onclick="showDetails('file', '${file}')">
-                    <div class="d-flex align-items-center">
-                        <div class="monitor-icon bg-success">
-                            <i class="fas fa-file"></i>
-                        </div>
-                        <div class="monitor-info">
-                            <div>${file}</div>
-                            <div class="monitor-time">
-                                <i class="fas fa-clock"></i>
-                                最近更新
-                            </div>
-                        </div>
-                    </div>
                 </div>
             `).join('');
-            wechatFileList.innerHTML = newFilesList;
-
-            // 更新已安装软件列表
-            const installedSoftwareList = document.getElementById('installedSoftwareList');
-            document.getElementById('softwareCount').innerHTML = `
-                <i class="fas fa-cube me-1"></i>${data.installed_software.length} 个应用
-            `;
             
-            const newSoftwareList = data.installed_software.map((software, index) => `
-                <div class="monitor-item ${!previousData.installed_software.includes(software) ? 'new-item' : ''}" 
-                     onclick="showDetails('software', '${software}')">
-                    <div class="d-flex align-items-center">
-                        <div class="monitor-icon bg-info">
-                            <i class="fas fa-cube"></i>
-                        </div>
-                        <div class="monitor-info">
-                            <div>${software}</div>
-                            <div class="monitor-time">
-                                <i class="fas fa-check-circle"></i>
-                                已安装
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-            installedSoftwareList.innerHTML = newSoftwareList;
+            // 更新历史数据
+            previousData = data;
 
-            // 更新历史记录表格
-            const historyTableBody = document.querySelector('#fileHistoryTable tbody');
-            const historyEntries = Object.entries(data.wechat_files_history || {});
-            
-            historyTableBody.innerHTML = historyEntries
-                .sort((a, b) => new Date(b[1].last_seen) - new Date(a[1].last_seen))
-                .map(([filename, details]) => `
-                    <tr>
-                        <td><i class="fas fa-file me-2"></i>${filename}</td>
-                        <td>${details.first_seen}</td>
-                        <td>${details.last_seen}</td>
-                    </tr>
-                `).join('');
-
-            // 更新历史记录数量
-            document.getElementById('historyCount').innerHTML = `
-                <i class="fas fa-history me-1"></i>${historyEntries.length} 条记录
-            `;
-
-            // 存储详细信息
-            previousData.active_window_history = data.active_window_history || [];
-            previousData.wechat_files_details = data.wechat_files_details || {};
-            previousData.software_details = data.software_details || {};
+            // 调试输出
+            console.log('Received data:', data);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
         });
 }
 
-function showDetails(type, item) {
+function showComputerDetails(computerId) {
+    const computerInfo = previousData.computers[computerId];
+    const fileHistory = previousData.wechat_files_history[computerId] || {};
+    
     const modal = document.getElementById('detailModal');
     const modalTitle = document.getElementById('modalTitle');
     const modalContent = document.getElementById('modalContent');
-    let content = '';
-
-    switch(type) {
-        case 'window':
-            modalTitle.innerHTML = '<i class="fas fa-window-maximize me-2"></i>活动窗口历史';
-            content = `
-                <ul class="detail-list">
-                    ${previousData.active_window_history.map(record => `
-                        <li class="detail-item">
-                            <i class="fas fa-window-maximize detail-icon"></i>
-                            <span>${record.title}</span>
-                            <span class="detail-time">${record.time}</span>
-                        </li>
+    
+    modalTitle.innerHTML = `<i class="fas fa-desktop me-2"></i>员工电脑详情 - ${computerId}`;
+    
+    modalContent.innerHTML = `
+        <div class="detail-sections">
+            <div class="detail-section">
+                <h6><i class="fas fa-window-maximize me-2"></i>活动窗口</h6>
+                <div class="detail-item">
+                    <span>${computerInfo.active_window}</span>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h6><i class="fab fa-weixin me-2"></i>微信文件监控</h6>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>文件名</th>
+                                <th>首次发现</th>
+                                <th>最后发现</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${Object.entries(fileHistory).map(([filename, details]) => `
+                                <tr>
+                                    <td>${filename}</td>
+                                    <td>${details.first_seen}</td>
+                                    <td>${details.last_seen}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h6><i class="fas fa-cube me-2"></i>已安装软件</h6>
+                <div class="detail-list">
+                    ${computerInfo.installed_software.map(software => `
+                        <div class="detail-item">
+                            <i class="fas fa-cube me-2"></i>${software}
+                        </div>
                     `).join('')}
-                </ul>
-            `;
-            break;
-
-        case 'file':
-            const fileDetails = previousData.wechat_files_details[item] || {};
-            modalTitle.innerHTML = '<i class="fab fa-weixin me-2"></i>文件详细信息';
-            content = `
-                <ul class="detail-list">
-                    <li class="detail-item">
-                        <i class="fas fa-file detail-icon"></i>
-                        <div>
-                            <div><strong>文件名：</strong> ${item}</div>
-                            <div><strong>大小：</strong> ${fileDetails.size || 'N/A'}</div>
-                            <div><strong>修改时间：</strong> ${fileDetails.modified_time || 'N/A'}</div>
-                            <div><strong>路径：</strong> ${fileDetails.path || 'N/A'}</div>
-                        </div>
-                    </li>
-                </ul>
-            `;
-            break;
-
-        case 'software':
-            const softwareDetails = previousData.software_details[item] || {};
-            modalTitle.innerHTML = '<i class="fas fa-cube me-2"></i>软件详细信息';
-            content = `
-                <ul class="detail-list">
-                    <li class="detail-item">
-                        <i class="fas fa-cube detail-icon"></i>
-                        <div>
-                            <div><strong>软件名：</strong> ${item}</div>
-                            <div><strong>版本：</strong> ${softwareDetails.version || 'N/A'}</div>
-                            <div><strong>安装时间：</strong> ${softwareDetails.install_time || 'N/A'}</div>
-                            <div><strong>发布者：</strong> ${softwareDetails.publisher || 'N/A'}</div>
-                            <div><strong>安装路径：</strong> ${softwareDetails.install_path || 'N/A'}</div>
-                        </div>
-                    </li>
-                </ul>
-            `;
-            break;
-    }
-
-    modalContent.innerHTML = content;
+                </div>
+            </div>
+        </div>
+    `;
+    
     modal.style.display = 'block';
 }
 

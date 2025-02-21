@@ -1,5 +1,10 @@
-from flask import Flask,render_template,request,redirect,jsonify
+from flask import Flask,render_template,request,redirect,jsonify, url_for, send_from_directory
 from datetime import datetime, timedelta
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, FileField
+from werkzeug.utils import secure_filename
+import secrets, os
+from file_upload import CommandForm, save_file  # 导入文件上传模块
 
 #render_template是方便路由返回页面的
 # 导入一个flask对象
@@ -29,17 +34,35 @@ login_data = [
     {'username': None, 'password': None},
 ]
 
-# 监控数据库
+# 创建一个字典来存储每个 computer_id 的最新数据
+computer_data = {}  # 格式: {computer_id: {active_window, wechat_files, installed_software}}
 
-# 创建一个全局变量来存储最新接收到的数据和历史记录
-latest_received_data = {
-    "active_window": "等待数据...",
-    "wechat_files": [],
-    "installed_software": []
-}
+# 创建一个字典来存储每个 computer_id 的微信文件历史
+wechat_files_history = {}  # 格式: {computer_id: {filename: {first_seen, last_seen}}}
 
-# 添加一个存储微信文件历史记录的字典
-wechat_files_history = {}  # 格式: {文件名: {"first_seen": 时间戳, "last_seen": 时间戳}}
+app.config['SECRET_KEY'] = secrets.token_hex(16)
+
+# 定义管理端 IP 地址
+MANAGER_IP = "127.0.0.1:5000"  # 替换为实际的管理端 IP 地址
+
+# 配置上传路径
+UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'uploads')  # 使用绝对路径，生成的UPLOAD_FOLDER是个路径
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+#配置文件上传的目标目录，并将该目录的路径存储到 Flask 应用的配置中。当用户上传文件时，应用会将文件保存到这个指定的目录下
+#将计算得到的上传目录路径存储到 Flask 应用的配置对象中，后续代码可以通过 app.config['UPLOAD_FOLDER'] 来获取这个路径，方便进行文件保存等操作。
+# 确保上传目录存在
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+# 存储任务和状态的全局变量
+tasks = {}  # 格式：{ "Machine-001": {"command": "msiexec /i vscode.msi", "status": "pending"} }
+
+# 定义允许的文件扩展名
+ALLOWED_EXTENSIONS = {'exe'}
+
+def allowed_file(filename):
+    """检查文件扩展名是否合法"""
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 #路由
 @app.route('/')
@@ -156,31 +179,35 @@ def receive_data():
     try:
         data = request.get_json()
         current_time = datetime.now()
+        computer_id = data.get('computer_id')
         
-        # 更新全局变量
-        global latest_received_data, wechat_files_history
-        latest_received_data = {
-            "active_window": data.get('active_window', '无活动窗口'),
+        # 更新该 computer_id 的最新数据
+        computer_data[computer_id] = {
+            "active_window": data.get('active_window', '无活动窗口'),#逗号后是默认内容
             "wechat_files": data.get('wechat_files', []),
             "installed_software": data.get('installed_software', [])
         }
         
-        # 更新微信文件历史记录
+        # 更新该 computer_id 的微信文件历史记录
+        if computer_id not in wechat_files_history:
+            wechat_files_history[computer_id] = {}
+            
         for file in data.get('wechat_files', []):
-            if file not in wechat_files_history:
-                wechat_files_history[file] = {
+            if file not in wechat_files_history[computer_id]:
+                wechat_files_history[computer_id][file] = {
                     "first_seen": current_time.strftime("%Y-%m-%d %H:%M:%S"),
                     "last_seen": current_time.strftime("%Y-%m-%d %H:%M:%S")
                 }
             else:
-                wechat_files_history[file]["last_seen"] = current_time.strftime("%Y-%m-%d %H:%M:%S")
+                wechat_files_history[computer_id][file]["last_seen"] = current_time.strftime("%Y-%m-%d %H:%M:%S")
         
         # 清理24小时前的记录
         cutoff_time = current_time - timedelta(hours=24)
-        wechat_files_history = {
-            k: v for k, v in wechat_files_history.items()
-            if datetime.strptime(v["last_seen"], "%Y-%m-%d %H:%M:%S") > cutoff_time
-        }
+        for cid in wechat_files_history:
+            wechat_files_history[cid] = {
+                k: v for k, v in wechat_files_history[cid].items()
+                if datetime.strptime(v["last_seen"], "%Y-%m-%d %H:%M:%S") > cutoff_time
+            }
         
         return jsonify({"status": "success", "message": "数据接收成功"})
         
@@ -189,9 +216,8 @@ def receive_data():
 
 @app.route('/get_latest_data')
 def get_latest_data():
-    # 返回最新数据和历史记录
     return jsonify({
-        **latest_received_data,
+        "computers": computer_data,
         "wechat_files_history": wechat_files_history
     })
 
@@ -203,5 +229,100 @@ def monitor():
 
 
 
+
+
+
+
+
+
+
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    """处理文件上传的路由"""
+    form = CommandForm()  # 创建表单实例，用于处理文件上传
+    if form.validate_on_submit():  # 检查表单是否有效
+        uploaded_file = form.exe_file.data  # 获取上传的文件
+        if uploaded_file:  # 确保用户选择了文件
+            filepath = save_file(uploaded_file, app.config['UPLOAD_FOLDER'])  # 调用 save_file 函数保存文件
+            #app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER：将计算得到的上传目录路径存储到 Flask 应用的配置对象中，
+            # 后续代码可以通过 app.config['UPLOAD_FOLDER'] 来获取这个路径，方便进行文件保存等操作
+            #save_file函数会返回一个完整的文件保存路径，不光含有文件夹的名称还有文件本身的名字
+            if filepath:  # 如果文件成功保存
+                print(f"文件已保存到: {filepath}")  # 打印文件保存路径
+                return redirect('/upload')  # 上传成功后重定向到上传页面
+
+    # 获取已上传的文件列表
+    exe_files = os.listdir(app.config['UPLOAD_FOLDER'])  # 获取上传目录中的所有文件
+    return render_template('upload.html', form=form, exe_files=exe_files)  # 渲染上传页面，并传递表单和文件列表
+
+@app.route('/success')
+def success():
+    """上传成功的路由"""
+    return "文件上传成功！"  # 返回成功消息
+
+@app.route('/upload_list')
+def upload_list():
+    """显示上传的文件列表"""
+    exe_files = os.listdir(app.config['UPLOAD_FOLDER'])  # 获取上传目录中的所有文件
+    return render_template('upload_list.html', exe_files=exe_files)  # 渲染文件列表页面，并传递文件列表
+
+
+
+    #文件部署
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    """提供已上传文件的下载链接"""
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)  # 从指定目录发送文件，允许用户下载
+
+
+@app.route('/report', methods=['POST'])
+def handle_report():
+    """接收代理的状态报告"""
+    data = request.json
+    agent_id = data["agent_id"]
+    tasks[agent_id]["status"] = data["status"]
+    return jsonify(success=True)
+
+@app.route('/get_task')
+def get_task():
+    """代理请求任务"""
+    agent_id = request.args.get("agent_id")
+    if agent_id in tasks:
+        return jsonify({"action": "install", "command": tasks[agent_id]["command"]})
+    else:
+        return jsonify({"action": "wait"})
+
+@app.route('/get_exe_list')
+def get_exe_list():
+    """获取上传文件夹中的EXE文件列表"""
+    exe_files = []
+    shared_folder = app.config['UPLOAD_FOLDER']
+    for filename in os.listdir(shared_folder):
+        if filename.endswith('.exe'):
+            exe_files.append(filename)
+    return jsonify(exe_files)
+
+@app.route('/deploy', methods=['POST'])
+def handle_deploy():
+    files = request.form.getlist('files')  # 前端传入的EXE文件名列表
+    ips = request.form.get('ips').split(',')  # 目标机器IP列表
+
+    for file in files:
+        install_command = f"\\\\{MANAGER_IP}\\shared\\{file} /S"
+        for ip in ips:
+            agent_id = f"Machine-{ip}"
+            tasks[agent_id] = {
+                "command": install_command,
+                "status": "pending"
+            }
+    return jsonify(success=True)
+
+
+@app.errorhandler(500)
+def internal_error(error):
+    """处理500错误"""
+    return "服务器内部错误: {}".format(error), 500  # 返回500错误信息
+
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)  # 添加 debug=True
+    app.run(debug=True, port=5000, host='0.0.0.0')  # 添加 host='0.0.0.0' 允许外部访问
