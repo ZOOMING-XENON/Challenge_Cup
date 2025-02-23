@@ -37,9 +37,9 @@
 
 <!-- 主要内容区域 -->
 <div class="main-content">
-    <h2>已上传的EXE文件</h2>
+    <h2>已上传的文件</h2>
     <ul class="list-group">
-        {% for file in exe_files %}
+        {% for file in uploaded_files_list %}
             <li class="list-group-item">{{ file }}</li>
         {% endfor %}
     </ul>

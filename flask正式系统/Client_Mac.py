@@ -6,6 +6,7 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import psutil
 from AppKit import NSWorkspace  # macOS 原生框架，用于获取活动窗口信息
+from datetime import datetime
 
 # Flask 服务器的 URL
 SERVER_URL = "http://127.0.0.1:5000/receive_data"
@@ -73,6 +74,61 @@ def send_data_to_server():
     except Exception as e:  #捕获 try 块中抛出的任何异常，并将异常对象赋值给变量 e。这样可以对异常进行处理，避免程序因异常而崩溃
         print(f"发送数据时出错：{e}")
 
+def download_file(server_url, filename, download_dir):
+    """下载单个文件"""
+    try:
+        # 构建下载URL
+        download_url = f"{server_url}/download_file/{filename}"
+        #引入了 f-string 这种字符串格式化方式。它以 f 或 F 作为前缀，字符串中可以使用大括号 {} 包含表达式，
+        # Python 会在运行时将这些表达式替换为其计算结果
+        
+        # 发送下载请求
+        response = requests.get(download_url, stream=True)
+        #访问服务器端端下载链接
+        if response.status_code == 200:
+            # 确保下载目录存在
+            os.makedirs(download_dir, exist_ok=True)
+            
+            # 构建保存路径
+            save_path = os.path.join(download_dir, filename)
+            
+            # 如果文件已存在，跳过下载
+            if os.path.exists(save_path):
+                print(f"文件已存在，跳过下载: {filename}")
+                return True
+                
+            # 保存文件
+            with open(save_path, 'wb') as f:
+                for chunk in response.iter_content(chunk_size=8192):
+                    if chunk:
+                        f.write(chunk)
+            print(f"文件下载成功: {filename}")
+            return True
+        else:
+            print(f"下载失败 {filename}: HTTP {response.status_code}")
+            return False
+    except Exception as e:
+        print(f"下载文件时出错 {filename}: {str(e)}")
+        return False
+
+def check_and_download_files(server_url, download_dir):
+    """检查并下载所有新文件"""
+    try:
+        # 获取可下载文件列表
+        response = requests.get(f"{server_url}/get_upload_files")
+        if response.status_code == 200:
+            files_info = response.json().get('files', [])
+            
+            # 下载每个文件
+            for file_info in files_info:
+                filename = file_info['filename']
+                download_file(server_url, filename, download_dir)
+                #将文件名为filename的文件从服务器下载到download_dir的地方
+        else:
+            print(f"获取文件列表失败: HTTP {response.status_code}")
+    except Exception as e:
+        print(f"检查文件更新时出错: {str(e)}")
+
 # 主函数
 def main():
     # 初始化文件系统监控
@@ -84,31 +140,45 @@ def main():
     #recursive=True：表示是否递归地监控指定目录及其子目录下的文件系统事件。如果设置为 True，
     # 则会监控指定目录及其所有子目录中的文件变化；如果设置为 False，则只监控指定目录下的文件变化。
 
-    try:
-        while True:
-            # 获取当前活动窗口的标题
-            active_window_title = get_active_window_title()
-            collected_data["active_window"].append({
-                "window_title": active_window_title,
-                "timestamp": time.strftime("%Y-%m-%d %H:%M:%S")#生成时间戳
-            })
-
-            # 获取已安装的软件列表
-            collected_data["installed_software"] = get_installed_software()
-
-            # 每 10 秒发送一次数据到服务器
-            time.sleep(10)
-            send_data_to_server()
-
-            # 清空临时数据，避免重复发送
-            collected_data["browsing_history"].clear()
-            collected_data["wechat_files"].clear()
-            collected_data["active_window"].clear()
-
-    except KeyboardInterrupt:
-        # 用户按下 Ctrl+C 时停止监控
-        observer.stop()
-    observer.join()
+    # 服务器地址
+    server_url = "http://127.0.0.1:5000"  # 根据实际情况修改
+    
+    # 下载目录
+    download_dir = os.path.join(os.path.expanduser('~'), 'Downloads', 'SecuritySystem')
+    #生成了下载目录～\Downloads\SecuritySystem
+    
+    print(f"开始监控...")
+    print(f"文件将下载到: {download_dir}")
+    print("按 Ctrl+C 停止监控")
+    
+    while True:
+        try:
+            # 检查并下载新文件
+            check_and_download_files(server_url, download_dir)
+            
+            # 收集并发送监控数据
+            data = {
+                "computer_id": "Mac-001",
+                "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "active_window": get_active_window_title(),
+                "wechat_files": collected_data["wechat_files"],
+                "installed_software": collected_data["installed_software"]
+            }
+            
+            # 发送数据到服务器
+            response = requests.post(f"{server_url}/receive_data", json=data)
+            if response.status_code == 200:
+                print(f"[{data['timestamp']}] 数据发送成功")
+            else:
+                print(f"[{data['timestamp']}] 数据发送失败: {response.status_code}")
+                
+        except KeyboardInterrupt:
+            print("\n停止监控")
+            break
+        except Exception as e:
+            print(f"发生错误: {str(e)}")
+        
+        time.sleep(3)  # 每3秒检查一次
 
 if __name__ == "__main__":
     main()

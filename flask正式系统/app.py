@@ -280,12 +280,47 @@ def success():
 @app.route('/upload_list')
 def upload_list():
     """显示上传的文件列表"""
-    exe_files = os.listdir(app.config['UPLOAD_FOLDER'])  # 获取上传目录中的所有文件
-    return render_template('upload_list.html', exe_files=exe_files)  # 渲染文件列表页面，并传递文件列表
+    uploaded_files_list = os.listdir(app.config['UPLOAD_FOLDER'])  # 获取上传目录中的所有文件
+    return render_template('upload_list.html', uploaded_files_list=uploaded_files_list)  # 渲染文件列表页面，并传递文件列表
 
 
     #文件部署
-@app.route('/uploads/<filename>')
+
+@app.errorhandler(500)
+def internal_error(error):
+    """处理500错误"""
+    return "服务器内部错误: {}".format(error), 500  # 返回500错误信息
+
+@app.route('/get_upload_files')
+def get_upload_files():
+    """返回所有可下载文件的列表"""
+    try:
+        files = os.listdir(app.config['UPLOAD_FOLDER'])
+        files_info = []
+        for file in files:
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], file)
+            if os.path.isfile(file_path):
+                files_info.append({
+                    'filename': file,
+                    'size': os.path.getsize(file_path)
+                })
+        return jsonify({'files': files_info})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/download_file/<filename>')
+def download_file(filename):
+    """处理文件下载请求"""
+    try:
+        return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000, host='0.0.0.0')  # 添加 host='0.0.0.0' 允许外部访问
+
+
+'''@app.route('/uploads/<filename>')
 def uploaded_file(filename):
     """提供已上传文件的下载链接"""
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)  # 从指定目录发送文件，允许用户下载
@@ -334,10 +369,4 @@ def handle_deploy():
     return jsonify(success=True)
 
 
-@app.errorhandler(500)
-def internal_error(error):
-    """处理500错误"""
-    return "服务器内部错误: {}".format(error), 500  # 返回500错误信息
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5000, host='0.0.0.0')  # 添加 host='0.0.0.0' 允许外部访问
+'''
