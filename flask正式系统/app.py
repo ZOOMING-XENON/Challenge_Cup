@@ -227,7 +227,34 @@ def monitor():
 
 
 
+@app.route('/ransomware')
+def ransomware():
+    # 假数据：这些数据可以根据实际情况从数据库中提取或计算
+    intercepted_attacks = 152  # 已拦截的勒索攻击次数
+    restored_files = 120  # 已恢复的文件数量
+    protection_status = "启用"  # 防护状态
+    threats_detected = 5  # 检测到的潜在威胁
 
+    # 假数据：防护事件（一个列表，包含事件的详细信息）
+    protection_events = [
+        {'id': '001', 'source': 'IP: 192.168.1.1', 'type': '勒索病毒', 'status': '已拦截', 'timestamp': '2023-10-12 10:30'},
+        {'id': '002', 'source': 'IP: 192.168.1.2', 'type': '勒索病毒', 'status': '已拦截', 'timestamp': '2023-10-12 11:00'},
+        {'id': '003', 'source': 'IP: 192.168.1.3', 'type': '恶意软件', 'status': '已修复', 'timestamp': '2023-10-12 12:00'},
+    ]
+
+    # 假数据：勒索攻击趋势图的数据（每月勒索攻击次数）
+    ransomware_attack_data = [20, 35, 50, 40, 60, 70]  # 假设每月的勒索攻击次数
+    attack_dates = ['2023-01', '2023-02', '2023-03', '2023-04', '2023-05', '2023-06']  # 对应的日期
+
+    # 渲染页面，传递假数据
+    return render_template('ransomware.html',
+                           intercepted_attacks=intercepted_attacks,
+                           restored_files=restored_files,
+                           protection_status=protection_status,
+                           threats_detected=threats_detected,
+                           protection_events=protection_events,
+                           ransomware_attack_data=ransomware_attack_data,
+                           attack_dates=attack_dates)
 
 
 
