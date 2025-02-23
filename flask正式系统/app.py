@@ -253,11 +253,6 @@ def ransomware():
 
 #文件上传
 
-
-
-
-
-
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     """处理文件上传的路由"""
@@ -287,11 +282,6 @@ def upload_list():
     """显示上传的文件列表"""
     exe_files = os.listdir(app.config['UPLOAD_FOLDER'])  # 获取上传目录中的所有文件
     return render_template('upload_list.html', exe_files=exe_files)  # 渲染文件列表页面，并传递文件列表
-
-
-
-
-
 
 
     #文件部署
