@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81dc67a1-e0cd-4570-a46e-9358eb240726" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask正式系统/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask正式系统/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask正式系统/file_upload.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask正式系统/file_upload.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask正式系统/templates/upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/../flask正式系统/templates/upload.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask正式系统/uploads/docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask正式系统/uploads/pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +137,7 @@
       <workItem from="1739845916950" duration="17923000" />
       <workItem from="1740030046823" duration="601000" />
       <workItem from="1740136722192" duration="607000" />
-      <workItem from="1740282442686" duration="605000" />
+      <workItem from="1740282442686" duration="617000" />
     </task>
     <servers />
   </component>
