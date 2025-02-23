@@ -7,6 +7,7 @@ from werkzeug.utils import secure_filename
 ALLOWED_EXTENSIONS = {'exe', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx'}
 
 class CommandForm(FlaskForm):
+    #继承了FlaskForm
     """定义文件上传表单"""
     exe_file = FileField('上传EXE文件')  # 定义一个文件字段，用于上传 EXE 文件
     submit = SubmitField('上传')  # 定义一个提交按钮，显示为"上传"
@@ -14,6 +15,7 @@ class CommandForm(FlaskForm):
 def allowed_file(filename):
     """检查文件扩展名是否合法"""
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    #返回一个布尔值，看这个文件有‘.'且文件的扩展名是ALLOWED_EXTENSIONS中之一
 
 def save_file(uploaded_file, upload_folder):
     """保存上传的文件到指定目录"""

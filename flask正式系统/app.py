@@ -4,8 +4,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, FileField
 from werkzeug.utils import secure_filename
 import secrets, os
-from file_upload import CommandForm, save_file  # 导入文件上传模块
-
+from file_upload import CommandForm, save_file,allowed_file # 导入文件上传模块
+#模块说明save_file(uploaded_file, upload_folder):
 #render_template是方便路由返回页面的
 # 导入一个flask对象
 #request对象可以拿到前浏览器传递给服务器的所有数据
@@ -57,12 +57,6 @@ if not os.path.exists(UPLOAD_FOLDER):
 # 存储任务和状态的全局变量
 tasks = {}  # 格式：{ "Machine-001": {"command": "msiexec /i vscode.msi", "status": "pending"} }
 
-# 定义允许的文件扩展名
-ALLOWED_EXTENSIONS = {'exe'}
-
-def allowed_file(filename):
-    """检查文件扩展名是否合法"""
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 #路由
 @app.route('/')
@@ -257,7 +251,7 @@ def ransomware():
                            attack_dates=attack_dates)
 
 
-
+#文件上传
 
 
 
@@ -280,8 +274,8 @@ def upload_file():
                 return redirect('/upload')  # 上传成功后重定向到上传页面
 
     # 获取已上传的文件列表
-    exe_files = os.listdir(app.config['UPLOAD_FOLDER'])  # 获取上传目录中的所有文件
-    return render_template('upload.html', form=form, exe_files=exe_files)  # 渲染上传页面，并传递表单和文件列表
+    uploaded_files_list = os.listdir(app.config['UPLOAD_FOLDER'])  # 获取上传目录中的所有文件
+    return render_template('upload.html', form=form, uploaded_files_list=uploaded_files_list)  # 渲染上传页面，并传递表单和文件列表
 
 @app.route('/success')
 def success():
@@ -293,6 +287,10 @@ def upload_list():
     """显示上传的文件列表"""
     exe_files = os.listdir(app.config['UPLOAD_FOLDER'])  # 获取上传目录中的所有文件
     return render_template('upload_list.html', exe_files=exe_files)  # 渲染文件列表页面，并传递文件列表
+
+
+
+
 
 
 
@@ -324,7 +322,7 @@ def get_task():
 def get_exe_list():
     """获取上传文件夹中的EXE文件列表"""
     exe_files = []
-    shared_folder = app.config['UPLOAD_FOLDER']
+    shared_folder = app.config['UPLOAD_FOLDER']#之前就配置好的上传路径
     for filename in os.listdir(shared_folder):
         if filename.endswith('.exe'):
             exe_files.append(filename)
