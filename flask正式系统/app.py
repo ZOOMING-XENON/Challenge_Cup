@@ -326,6 +326,16 @@ def download_file(filename):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/outgoing_file_records')
+def out_going_file_records():
+    """文件外发记录"""
+    return render_template('outgoing_file_records.html')
+
+@app.route('/file_operation_records')
+def file_operation_records():
+    """文件操作记录"""
+    return render_template('file_operation_records.html')
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')  # 添加 host='0.0.0.0' 允许外部访问
 
