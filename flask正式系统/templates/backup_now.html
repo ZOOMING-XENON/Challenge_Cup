@@ -1,6 +1,57 @@
 {% extends "base.html" %}
 
-{% block title %}上传文件列表 - 企业安全管理系统{% endblock %}
+{% block title %}数据备份与监测 - 企业安全管理系统{% endblock %}
+
+{% block extra_style %}
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: 20px;
+    padding-top: 80px;
+}
+
+.table-responsive {
+    background: var(--color-canvas-default);
+    border-radius: 6px;
+    border: 1px solid var(--color-border-default);
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table th {
+    background: var(--color-canvas-subtle);
+    font-weight: 600;
+    color: var(--color-fg-default);
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.action-buttons .btn {
+    padding: 4px 8px;
+    font-size: 14px;
+}
+
+.badge {
+    font-weight: 500;
+}
+
+.add-button {
+    margin-bottom: 20px;
+}
+
+.backup-status {
+    font-size: 1rem;
+    color: var(--color-fg-default);
+    margin-bottom: 20px;
+}
+
+.monitoring-records {
+    margin-top: 40px;
+}
+{% endblock %}
 
 {% block content %}
 <!-- 侧边栏 -->
@@ -14,8 +65,8 @@
         <a class="nav-link" href="/admin"><i class="fas fa-users"></i> 员工管理</a>
         <a class="nav-link" href="/monitor"><i class="fas fa-globe"></i> 上网审计管控</a>
         <a class="nav-link" href="/upload"><i class="fas fa-upload"></i> 文件上传</a>
-        <a class="nav-link active" href="/upload_list"><i class="fas fa-list"></i> 上传文件列表</a>
-        <a class="nav-link" href="/backup"><i class="fas fa-database"></i> 数据备份与监测</a>
+        <a class="nav-link" href="/upload_list"><i class="fas fa-list"></i> 上传文件列表</a>
+        <a class="nav-link active" href="/backup"><i class="fas fa-database"></i> 数据备份与监测</a>
         <a class="nav-link" href="#"><i class="fas fa-chart-line"></i> 行为分析</a>
         <a class="nav-link" href="/ransomware"><i class="fas fa-lock"></i> 勒索防护</a>
         <a class="nav-link" href="#"><i class="fas fa-cog"></i> 软件管理</a>
@@ -26,7 +77,7 @@
 <div class="top-nav">
     <div class="d-flex align-items-center">
         <i class="fas fa-bars me-3"></i>
-        <span>上传文件列表</span>
+        <span>数据备份与监测</span>
     </div>
     <div class="d-flex align-items-center">
         <span class="me-3"><i class="fas fa-bell"></i></span>
@@ -44,4 +95,4 @@
         {% endfor %}
     </ul>
 </div>
-{% endblock %} 
+{% endblock %}

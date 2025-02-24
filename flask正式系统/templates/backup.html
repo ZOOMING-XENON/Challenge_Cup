@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block title %}数据备份与监测 - 企业安全管理系统{% endblock %}
+
+{% block extra_style %}
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: 20px;
+    padding-top: 80px;
+}
+
+.table-responsive {
+    background: var(--color-canvas-default);
+    border-radius: 6px;
+    border: 1px solid var(--color-border-default);
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table th {
+    background: var(--color-canvas-subtle);
+    font-weight: 600;
+    color: var(--color-fg-default);
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.action-buttons .btn {
+    padding: 4px 8px;
+    font-size: 14px;
+}
+
+.badge {
+    font-weight: 500;
+}
+
+.add-button {
+    margin-bottom: 20px;
+}
+
+.backup-status {
+    font-size: 1rem;
+    color: var(--color-fg-default);
+    margin-bottom: 20px;
+}
+
+.monitoring-records {
+    margin-top: 40px;
+}
+{% endblock %}
+
+{% block content %}
+<!-- 侧边栏 -->
+<div class="sidebar">
+    <div class="system-title">
+        <i class="fas fa-shield-alt"></i>
+        企业安全管理系统
+    </div>
+    <nav class="nav flex-column">
+        <a class="nav-link" href="/overview"><i class="fas fa-tachometer-alt"></i> 概览</a>
+        <a class="nav-link" href="/admin"><i class="fas fa-users"></i> 员工管理</a>
+        <a class="nav-link" href="/monitor"><i class="fas fa-globe"></i> 上网审计管控</a>
+        <a class="nav-link" href="/upload"><i class="fas fa-upload"></i> 文件上传</a>
+        <a class="nav-link" href="/upload_list"><i class="fas fa-list"></i> 上传文件列表</a>
+        <a class="nav-link active" href="/backup"><i class="fas fa-database"></i> 数据备份与监测</a>
+        <a class="nav-link" href="#"><i class="fas fa-chart-line"></i> 行为分析</a>
+        <a class="nav-link" href="/ransomware"><i class="fas fa-lock"></i> 勒索防护</a>
+        <a class="nav-link" href="#"><i class="fas fa-cog"></i> 软件管理</a>
+    </nav>
+</div>
+
+<!-- 顶部导航栏 -->
+<div class="top-nav">
+    <div class="d-flex align-items-center">
+        <i class="fas fa-bars me-3"></i>
+        <span>数据备份与监测</span>
+    </div>
+    <div class="d-flex align-items-center">
+        <span class="me-3"><i class="fas fa-bell"></i></span>
+        <span class="me-3"><i class="fas fa-user"></i> 管理员</span>
+        <a href="/login" class="btn btn-outline-secondary btn-sm">退出</a>
+    </div>
+</div>
+
+<!-- 主要内容区域 -->
+<div class="main-content">
+    <!-- 数据备份部分 -->
+    <div class="backup-status">
+        <h4>当前数据备份状态</h4>
+        <p>最近备份时间：{{ last_backup_time }}</p>
+        <p>备份状态：
+            {% if backup_status == 'success' %}
+                <span class="badge bg-success">备份成功</span>
+            {% elif backup_status == 'failed' %}
+                <span class="badge bg-danger">备份失败</span>
+            {% else %}
+                <span class="badge bg-warning">待备份</span>
+            {% endif %}
+        </p>
+        <div class="add-button">
+            <a href="/backup_now" class="btn btn-primary">
+                <i class="fas fa-database me-2"></i>立即备份
+            </a>
+        </div>
+    </div>
+
+    <!-- 数据备份监测记录部分 -->
+    <div class="monitoring-records">
+        <h4>数据备份监测记录</h4>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>备份时间</th>
+                        <th>备份状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in backup_records %}
+                    <tr>
+                        <td>{{ record.backup_time }}</td>
+                        <td>
+                            {% if record.status == 'success' %}
+                                <span class="badge bg-success">成功</span>
+                            {% elif record.status == 'failed' %}
+                                <span class="badge bg-danger">失败</span>
+                            {% else %}
+                                <span class="badge bg-warning">待备份</span>
+                            {% endif %}
+                        </td>
+                        <td class="action-buttons">
+                            <a href="/backup_details?id={{ record.id }}" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-info-circle me-1"></i>查看详情
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

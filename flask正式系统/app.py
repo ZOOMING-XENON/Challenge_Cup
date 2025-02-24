@@ -251,8 +251,8 @@ def ransomware():
                            attack_dates=attack_dates)
 
 
-#文件上传
 
+#文件上传
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     """处理文件上传的路由"""
@@ -315,6 +315,33 @@ def download_file(filename):
         return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+
+backup_records = [
+    {'id': 1, 'backup_time': '2025-02-20 10:30', 'status': 'success'},
+    {'id': 2, 'backup_time': '2025-02-19 15:00', 'status': 'failed'},
+    {'id': 3, 'backup_time': '2025-02-18 12:00', 'status': 'success'},
+]
+
+
+@app.route('/backup')
+def backup():
+    # 获取最近的备份时间
+    last_backup_time = '2025-02-20 10:30'
+    # 模拟备份状态
+    backup_status = 'success'  # 可以是 'success'，'failed'，'pending'
+
+    # 渲染模板并传递数据
+    return render_template('backup.html',
+                           last_backup_time=last_backup_time,
+                           backup_status=backup_status,
+                           backup_records=backup_records)
+
+@app.route('/backup_now')
+def backup_now():
+    """显示上传的文件列表"""
+    uploaded_files_list = os.listdir(app.config['UPLOAD_FOLDER'])  # 获取上传目录中的所有文件
+    return render_template('backup_now.html', uploaded_files_list=uploaded_files_list)  # 渲染文件列表页面，并传递文件列表
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')  # 添加 host='0.0.0.0' 允许外部访问
