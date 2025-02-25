@@ -1,0 +1,11 @@
+# HTTP文件上传监控
+alert tcp any any -> any 80 (msg:"可能的敏感文件上传"; flow:established,to_server; content:"Content-Type: application/"; pcre:"/\.(doc|docx|pdf|xls|xlsx)$/"; sid:1000001; rev:1;)
+
+# 信用卡号码检测
+alert tcp any any -> any any (msg:"发现信用卡号码"; pcre:"/4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}/"; sid:1000002; rev:1;)
+
+# 身份证号码检测
+alert tcp any any -> any any (msg:"发现身份证号码"; pcre:"/[1-9]\d{5}(?:18|19|20)\d{2}(?:0[1-9]|10|11|12)(?:0[1-9]|[1-2]\d|30|31)\d{3}[\dXx]/"; sid:1000003; rev:1;)
+
+# FTP敏感文件传输
+alert tcp any any -> any 21 (msg:"FTP敏感文件传输"; flow:established,to_server; content:"STOR"; pcre:"/\.(doc|docx|pdf|xls|xlsx)$/"; sid:1000004; rev:1;)

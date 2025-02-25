@@ -1,0 +1,35 @@
+{
+  "title": "DLP 监控仪表板",
+  "panels": [
+    {
+      "title": "违规传输趋势",
+      "type": "line",
+      "source": {
+        "index": "dlp-logs",
+        "aggs": {
+          "violations_over_time": {
+            "date_histogram": {
+              "field": "timestamp",
+              "interval": "1h"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "高风险用户TOP10",
+      "type": "table",
+      "source": {
+        "index": "dlp-logs",
+        "aggs": {
+          "risky_users": {
+            "terms": {
+              "field": "owner",
+              "size": 10
+            }
+          }
+        }
+      }
+    }
+  ]
+}

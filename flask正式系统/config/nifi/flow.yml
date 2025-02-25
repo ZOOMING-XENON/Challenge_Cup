@@ -1,0 +1,22 @@
+flow:
+  name: DLP Flow
+  processors:
+    - name: MonitorFileTransfers
+      type: org.apache.nifi.processors.standard.ListenTCP
+      position:
+        x: 0
+        y: 0
+      config:
+        Port: 9999
+        
+    - name: DetectSensitiveData
+      type: org.apache.nifi.processors.standard.EvaluateRegularExpression
+      position:
+        x: 0
+        y: 200
+      config:
+        Regular Expression: |
+          # 信用卡
+          (?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})
+          # 身份证
+          [1-9]\d{5}(?:18|19|20)\d{2}(?:0[1-9]|10|11|12)(?:0[1-9]|[1-2]\d|30|31)\d{3}[\dXx]
