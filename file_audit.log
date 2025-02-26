@@ -1,0 +1,12 @@
+2025-02-26 23:42:03,509 - FileAudit - ERROR - ÅäÖÃ¼ÓÔØÊ§°Ü: [Errno 2] No such file or directory: 'audit_config.json'
+2025-02-26 23:42:03,525 - FileAudit - INFO - ¿ªÊ¼¼à¿ØÄ¿Â¼: C:\AuditTarget
+2025-02-26 23:42:03,525 - FileAudit - INFO - ¿ªÊ¼¼à¿ØÄ¿Â¼: C:\Users\z1968\Desktop
+2025-02-26 23:42:03,538 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-26 23:42:03,539 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-26 23:42:39,875 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 23:42:39', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': '578d37f0c21e0ee6c972b371138637d35e88ef95a4eafb9ed6ce056bbe287ad3', 'risk': None}
+2025-02-26 23:42:56,275 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 23:42:56', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '578d37f0c21e0ee6c972b371138637d35e88ef95a4eafb9ed6ce056bbe287ad3', 'risk': None}
+2025-02-26 23:43:10,705 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 23:43:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'risk': None}
+2025-02-26 23:43:25,257 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 23:43:25', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'risk': None}

@@ -10,3 +10,90 @@
 2025-02-25 19:56:10,781 - INFO - ¿ªÊ¼¼à¿ØÄ¿Â¼: C:\¹«Ë¾ÎÄ¼þ
 2025-02-25 19:56:10,783 - ERROR - Â·¾¶²»´æÔÚ: C:\Users\YourName\Desktop
 2025-02-25 19:56:10,783 - ERROR - Â·¾¶²»´æÔÚ: /home/user/docs
+2025-02-26 22:43:31,821 - FileAudit - ERROR - ÅäÖÃ¼ÓÔØÊ§°Ü: [Errno 2] No such file or directory: 'audit_config.json'
+2025-02-26 22:43:31,840 - FileAudit - WARNING - Â·¾¶²»´æÔÚ: C:\AuditTarget
+2025-02-26 22:43:31,841 - FileAudit - INFO - ¿ªÊ¼¼à¿ØÄ¿Â¼: C:\Users\z1968\Desktop
+2025-02-26 22:43:31,860 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-26 22:43:31,861 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-26 22:43:40,739 - werkzeug - INFO - 10.250.239.172 - - [26/Feb/2025 22:43:40] "[33mGET / HTTP/1.1[0m" 404 -
+2025-02-26 22:43:41,174 - werkzeug - INFO - 10.250.239.172 - - [26/Feb/2025 22:43:41] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-26 22:43:56,136 - werkzeug - INFO - 127.0.0.1 - - [26/Feb/2025 22:43:56] "[33mGET / HTTP/1.1[0m" 404 -
+2025-02-26 22:43:56,373 - werkzeug - INFO - 127.0.0.1 - - [26/Feb/2025 22:43:56] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-26 22:44:39,875 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 22:44:39', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '4611bb24e533b5df459a01a5aeadb1d4d6ffb1c93cffe15b410252da3d9ee452', 'risk': None}
+2025-02-26 22:44:39,884 - FileAudit - ERROR - ¹þÏ£¼ÆËãÊ§°Ü: [Errno 13] Permission denied: 'C:\\Users\\z1968\\Desktop\\client21462'
+2025-02-26 22:44:39,884 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 22:44:39', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': None, 'risk': None}
+2025-02-26 22:44:45,131 - FileAudit - ERROR - ¹þÏ£¼ÆËãÊ§°Ü: [Errno 13] Permission denied: 'C:\\Users\\z1968\\Desktop\\client21462\\transfer_log.json'
+2025-02-26 22:44:45,132 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 22:44:45', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': None, 'risk': None}
+2025-02-26 22:44:45,142 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 22:44:45', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'f416e701d31073885ab1c91379b9a61a63c57b0c5544a6c82dadc39eba29a81c', 'risk': None}
+2025-02-26 22:45:09,932 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 22:45:09', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'd571e3132420e5128e7a6f7d549c0c7a0c0e25994740c6cc370759ab77d6d8a5', 'risk': None}
+2025-02-26 22:45:09,942 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:09', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'f3c264c53a2f14bce6ef41b3b5eba25f21695d37332954ffa71fc27462f03c24', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:09,952 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:09', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '08b4cefec2dccf71a61f2b4271e523a4d08766a062c28eaa71ec6b3ac64fa227', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:09,963 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:09', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '7e57cd4caab3aebb5f4f093f30e570b45ac6b66d176ae7b8342c2e272f9016a6', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:09,973 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:09', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '7695f45610d96c019789a22bd44f435035f7d3fafc3d50b71190adef44f6b26d', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,001 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'ccdf790945a177bf90ffada64c926ba7dfb0d9cdfe706eae901a3aadbc03b6a1', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,020 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'f2cfd19373d180f55a998e69b2698dd07a31b73758dcf3316c88d8ca79531ad8', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,030 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'c81b82043df2900cb67d46c5ae46c38a5001445a095ef7cad3692a80a5cfe80c', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,040 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'a7e1b0d3bd3f3874e727c592ae2dd60f16498459e7d9e5c4db03fbc205b61d71', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,049 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'ba819d935e6dfbd033dcdf40327f3fe997632a479b18db0d01a2afd2781e13cd', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,059 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'ace7a1163c6ef3ffac48a493de347a765cd009712e3634a51659c94cca818424', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,068 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'e46907a52f33cd3cd461d63b854ef92fcd5d4496485cf6ed575a858e3f0bb915', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,078 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'cef36f0e3e02437febfc27b026ddf8ec55fa667eac4df5041f61a45e12da0332', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,087 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '69bcee85e382533cc37c4a0e45ac68db6150f4c2f6c3527a2cda3ea30f8aed0a', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,096 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '344167b8e515d4e1adbcd79ac6ae18265e1291aa9a588d5708023e5fbd226eb4', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,110 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '36f3f811048f8159330e9a9a08aa7293eb7fc4373bad04502f0609f992eeba0e', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,120 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '842772239c61d9a0163f305988870435a88162503d30d55c0821c80c930cfa81', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,129 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '4eba114806ca04f04a23d625401440c88a179e902057a6a8aa43a0b7e7598469', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,151 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'a769652498cbc1c25c21b7038e1700b3872278a81da26ddb9f06d3718fbcab10', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,171 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '58e8fd10c34b3efe1e699687360614ae52acb81499b3021b2e3a8f02cdb6968c', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,185 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '2feb754bf746ce97ffc3ed2e6048e7cad16f444559e1949e1126fc6b2debca9c', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,217 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'a08566bda8daf1d362d32305f1df748647e6f1b2e957b70b942430731bfc3214', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,226 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'c462ee7e1b8ebf5240d94af76ae7eadd83f8ef20df7f4bb10616fc43605de3e2', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,239 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'ff99cc191f3e2de8e444162ee5f1dbe25a7dd848b1883142a6863a347daf6afb', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,253 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '456e0300c351cb3eb094bfcbc64b9757596a0af0a574a8ee968ecea34834f038', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,264 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'f805a019ef98feacf90ca8d792fbeadd0ba25bdc88f7b2c66871b32ca618c26f', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,280 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '2abc6e2dd68c745da2971f0c04c7d713cb5270e58f82fac8b15f0458888ea8ea', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,289 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '2dd666adc2068ad3bf16a6b066580133ddace248f69c71a5ed03448bfbd37982', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:45:10,305 - FileAudit - WARNING - ·çÏÕ¸æ¾¯ - {'timestamp': '2025-02-26 22:45:10', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'd33c58c4b5fa408fc9cbd61b5c49b84ab9586dd9b2d503d4a156beeed1d29c9f', 'risk': '¸ßÆµmodified²Ù×÷'}
+2025-02-26 22:54:09,019 - FileAudit - ERROR - ÅäÖÃ¼ÓÔØÊ§°Ü: [Errno 2] No such file or directory: 'audit_config.json'
+2025-02-26 22:54:09,021 - FileAudit - WARNING - Â·¾¶²»´æÔÚ: C:\AuditTarget
+2025-02-26 22:54:09,021 - FileAudit - INFO - ¿ªÊ¼¼à¿ØÄ¿Â¼: C:\Users\z1968\Desktop
+2025-02-26 22:54:09,035 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-26 22:54:09,035 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-26 22:58:48,284 - FileAudit - WARNING - Â·¾¶²»´æÔÚ: C:\AuditTarget
+2025-02-26 22:58:48,284 - FileAudit - INFO - ¿ªÊ¼¼à¿ØÄ¿Â¼: C:\Users\z1968\Desktop
+2025-02-26 22:58:48,296 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-26 22:58:48,296 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-26 22:59:32,462 - FileAudit - INFO - ¿ªÊ¼¼à¿ØÄ¿Â¼: C:\AuditTarget
+2025-02-26 22:59:32,463 - FileAudit - INFO - ¿ªÊ¼¼à¿ØÄ¿Â¼: C:\Users\z1968\Desktop
+2025-02-26 22:59:32,477 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-26 22:59:32,477 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-26 22:59:42,652 - FileAudit - ERROR - ¹þÏ£¼ÆËãÊ§°Ü: [Errno 13] Permission denied: 'C:\\AuditTarget\\ÐÂ½¨ BMP Í¼Ïñ.bmp'
+2025-02-26 22:59:42,653 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 22:59:42', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': None, 'risk': None}
+2025-02-26 22:59:43,520 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 22:59:43', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'risk': None}
+2025-02-26 23:09:34,450 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 23:09:34', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'df764901339d7afeb3c630e2cea9e13cfbadd5778221ba41d09700368169583a', 'risk': None}
+2025-02-26 23:09:34,464 - FileAudit - ERROR - ¹þÏ£¼ÆËãÊ§°Ü: [Errno 13] Permission denied: 'C:\\Users\\z1968\\Desktop\\client21462\\temp'
+2025-02-26 23:09:34,464 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 23:09:34', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': None, 'risk': None}
+2025-02-26 23:16:26,158 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 23:16:26', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'b99c04ff0e87546e051bdfe9ec0efa65479c55885f56f629e51111772fc11604', 'risk': None}
+2025-02-26 23:16:26,172 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 23:16:26', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'b99c04ff0e87546e051bdfe9ec0efa65479c55885f56f629e51111772fc11604', 'risk': None}
+2025-02-26 23:16:27,159 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 23:16:27', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '12baa42e17ece5c5aef857cb26355a0d7d8b9af51dce342b8c1cb6b4220ccdfd', 'risk': None}
+2025-02-26 23:23:37,168 - FileAudit - INFO - ¿ªÊ¼¼à¿ØÄ¿Â¼: C:\AuditTarget
+2025-02-26 23:23:37,168 - FileAudit - INFO - ¿ªÊ¼¼à¿ØÄ¿Â¼: C:\Users\z1968\Desktop
+2025-02-26 23:23:37,180 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-26 23:23:37,180 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-26 23:26:52,479 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 23:26:52', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'de5aa5cb4251f6c806572f088a7701b4aa51f4351266288979331eace7dead3d', 'risk': None}
+2025-02-26 23:26:52,496 - FileAudit - INFO - ²Ù×÷¼ÇÂ¼ - {'timestamp': '2025-02-26 23:26:52', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'de5aa5cb4251f6c806572f088a7701b4aa51f4351266288979331eace7dead3d', 'risk': None}

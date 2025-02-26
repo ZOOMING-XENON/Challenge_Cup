@@ -1,0 +1,15 @@
+{
+    "path_patterns": ["^.*AuditTest.*$"],  
+    "exclude_patterns": ["^.*temp.*$"],  
+    "file_extensions": [".docx", ".xlsx"],
+    "global_thresholds": {
+      "delete": 2, 
+      "modify": 5  
+    },
+    "role_thresholds": {
+      "admin": {
+        "delete": 5,
+        "modify": 10
+      }
+    }
+  }
