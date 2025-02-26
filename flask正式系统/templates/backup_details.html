@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}备份详情 - 企业安全管理系统{% endblock %}
+
+{% block content %}
+<div class="sidebar">
+    <div class="system-title">
+        <i class="fas fa-shield-alt"></i>
+        企业安全管理系统
+    </div>
+    <nav class="nav flex-column">
+        <a class="nav-link" href="/overview"><i class="fas fa-tachometer-alt"></i> 概览</a>
+        <a class="nav-link" href="/admin"><i class="fas fa-users"></i> 员工管理</a>
+        <a class="nav-link" href="/monitor"><i class="fas fa-globe"></i> 上网审计管控</a>
+        <a class="nav-link" href="/upload"><i class="fas fa-upload"></i> 文件上传</a>
+        <a class="nav-link" href="/upload_list"><i class="fas fa-list"></i> 上传文件列表</a>
+        <a class="nav-link active" href="/backup"><i class="fas fa-database"></i> 数据备份与监测</a>
+        <a class="nav-link" href="#"><i class="fas fa-chart-line"></i> 行为分析</a>
+        <a class="nav-link" href="/ransomware"><i class="fas fa-lock"></i> 勒索防护</a>
+        <a class="nav-link" href="#"><i class="fas fa-cog"></i> 软件管理</a>
+    </nav>
+</div>
+
+<div class="top-nav">
+    <div class="d-flex align-items-center">
+        <i class="fas fa-bars me-3"></i>
+        <span>备份详情</span>
+    </div>
+    <div class="d-flex align-items-center">
+        <span class="me-3"><i class="fas fa-bell"></i></span>
+        <span class="me-3"><i class="fas fa-user"></i> 管理员</span>
+        <a href="/login" class="btn btn-outline-secondary btn-sm">退出</a>
+    </div>
+</div>
+
+<div class="main-content">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">备份详情</h5>
+            <a href="/backup" class="btn btn-outline-secondary btn-sm">
+                <i class="fas fa-arrow-left me-2"></i>返回
+            </a>
+        </div>
+        <div class="card-body">
+            <!-- 备份基本信息 -->
+            <div class="mb-4">
+                <h6>基本信息</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th width="150">备份时间</th>
+                            <td>{{ backup_record.backup_time }}</td>
+                        </tr>
+                        <tr>
+                            <th>备份状态</th>
+                            <td>
+                                {% if backup_record.status == 'success' %}
+                                    <span class="badge bg-success">备份成功</span>
+                                {% elif backup_record.status == 'failed' %}
+                                    <span class="badge bg-danger">备份失败</span>
+                                {% elif backup_record.status == 'partial' %}
+                                    <span class="badge bg-warning">部分成功</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">未知状态</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>源路径</th>
+                            <td>{{ backup_record.source_path }}</td>
+                        </tr>
+                        <tr>
+                            <th>备份路径</th>
+                            <td>{{ backup_record.path }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 备份文件列表 -->
+            <div class="mb-4">
+                <h6>成功备份的文件</h6>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>文件名</th>
+                                <th>大小</th>
+                                <th>修改时间</th>
+                                <th>源路径</th>
+                                <th>目标路径</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for file in backup_record.files %}
+                            <tr>
+                                <td>
+                                    <i class="fas fa-file me-2"></i>
+                                    {{ file.name }}
+                                </td>
+                                <td>{{ (file.size / 1024)|round(2) }} KB</td>
+                                <td>{{ file.modified_time }}</td>
+                                <td><small class="text-muted">{{ file.source_path }}</small></td>
+                                <td><small class="text-muted">{{ file.target_path }}</small></td>
+                            </tr>
+                            {% endfor %}
+                            {% if not backup_record.files %}
+                            <tr>
+                                <td colspan="5" class="text-center">暂无成功备份的文件</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 失败文件列表 -->
+            {% if backup_record.failed_files %}
+            <div>
+                <h6>备份失败的文件</h6>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>文件名</th>
+                                <th>错误信息</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for file in backup_record.failed_files %}
+                            <tr>
+                                <td>
+                                    <i class="fas fa-exclamation-triangle text-warning me-2"></i>
+                                    {{ file.file }}
+                                </td>
+                                <td class="text-danger">{{ file.error }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

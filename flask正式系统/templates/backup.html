@@ -91,19 +91,30 @@
     <!-- 数据备份部分 -->
     <div class="backup-status">
         <h4>当前数据备份状态</h4>
-        <p>最近备份时间：{{ last_backup_time }}</p>
-        <p>备份状态：
-            {% if backup_status == 'success' %}
-                <span class="badge bg-success">备份成功</span>
-            {% elif backup_status == 'failed' %}
-                <span class="badge bg-danger">备份失败</span>
-            {% else %}
-                <span class="badge bg-warning">待备份</span>
-            {% endif %}
-        </p>
+        {% if backup_records %}
+            {% set latest_backup = backup_records[0] %}
+            <p>最近备份时间：{{ latest_backup.backup_time }}</p>
+            <p>备份状态：
+                {% if latest_backup.status == 'success' %}
+                    <span class="badge bg-success">备份成功</span>
+                {% elif latest_backup.status == 'failed' %}
+                    <span class="badge bg-danger">备份失败</span>
+                {% elif latest_backup.status == 'partial' %}
+                    <span class="badge bg-warning">部分成功</span>
+                {% else %}
+                    <span class="badge bg-secondary">未知状态</span>
+                {% endif %}
+            </p>
+        {% else %}
+            <p>最近备份时间：暂无备份记录</p>
+            <p>备份状态：<span class="badge bg-secondary">未备份</span></p>
+        {% endif %}
         <div class="add-button">
-            <a href="/backup_now" class="btn btn-primary">
+            <a href="/backup_now" class="btn btn-primary me-2">
                 <i class="fas fa-database me-2"></i>立即备份
+            </a>
+            <a href="/backup_schedules" class="btn btn-outline-primary">
+                <i class="fas fa-clock me-2"></i>备份计划
             </a>
         </div>
     </div>
@@ -134,7 +145,7 @@
                             {% endif %}
                         </td>
                         <td class="action-buttons">
-                            <a href="/backup_details?id={{ record.id }}" class="btn btn-outline-primary btn-sm">
+                            <a href="/backup_details/{{ record.id }}" class="btn btn-outline-primary btn-sm">
                                 <i class="fas fa-info-circle me-1"></i>查看详情
                             </a>
                         </td>
