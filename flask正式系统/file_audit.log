@@ -97,3 +97,611 @@
 2025-02-26 23:23:37,180 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
 2025-02-26 23:26:52,479 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-26 23:26:52', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'de5aa5cb4251f6c806572f088a7701b4aa51f4351266288979331eace7dead3d', 'risk': None}
 2025-02-26 23:26:52,496 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-26 23:26:52', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'de5aa5cb4251f6c806572f088a7701b4aa51f4351266288979331eace7dead3d', 'risk': None}
+2025-02-27 00:20:28,358 - FileAudit - INFO - ��ʼ���Ŀ¼: C:\AuditTarget
+2025-02-27 00:20:28,358 - FileAudit - INFO - ��ʼ���Ŀ¼: C:\Users\z1968\Desktop
+2025-02-27 00:20:28,370 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 00:20:28,370 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 00:20:58,744 - FileAudit - INFO - ��ʼ���Ŀ¼: C:\AuditTarget
+2025-02-27 00:20:58,744 - FileAudit - INFO - ��ʼ���Ŀ¼: C:\Users\z1968\Desktop
+2025-02-27 00:20:58,755 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 00:20:58,755 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 00:30:46,589 - FileAudit - INFO - 开始监控目录: C:\AuditTarget
+2025-02-27 00:30:46,589 - FileAudit - INFO - 开始监控目录: C:\Users\z1968\Desktop
+2025-02-27 00:30:46,600 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 00:30:46,601 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 00:36:49,145 - FileAudit - INFO - 开始监控目录: C:\AuditTarget
+2025-02-27 00:36:49,145 - FileAudit - INFO - 开始监控目录: C:\Users\z1968\Desktop
+2025-02-27 00:36:49,156 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 00:36:49,156 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 00:39:38,623 - FileAudit - WARNING - �ļ���������������: C:\Users\z1968\Desktop\client21462\temp\shadowsocks_2025-02.log
+2025-02-27 00:39:38,623 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 00:39:38', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'locked', 'risk': None}
+2025-02-27 00:39:42,319 - FileAudit - WARNING - 文件被其他进程锁定: C:\Users\z1968\Desktop\client21462\temp\shadowsocks_2025-02.log
+2025-02-27 00:39:42,319 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 00:39:42', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'locked', 'risk': None}
+2025-02-27 00:39:59,278 - FileAudit - WARNING - Ȩ�޾ܾ������ļ�: C:\Users\z1968\Desktop\client21462\temp (�����Թ���Ա�������г���)
+2025-02-27 00:39:59,279 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 00:39:59', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'permission_denied', 'risk': None}
+2025-02-27 00:40:14,159 - FileAudit - WARNING - 权限拒绝访问文件: C:\Users\z1968\Desktop\client21462\temp (建议以管理员身份运行程序)
+2025-02-27 00:40:14,160 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 00:40:14', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'permission_denied', 'risk': None}
+2025-02-27 00:40:23,746 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 00:40:23', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '63a4bdd69d8a20925d8f13c6f903ba7a9dacd4e0c82da83fd41e9a860eeb8ad0', 'risk': None}
+2025-02-27 00:40:45,847 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 00:40:45', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'db787742151f361781101afb528ebcf3da1f77cf91bdeac2585e0b8754c78456', 'risk': None}
+2025-02-27 00:40:48,109 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 00:40:48', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '63a4bdd69d8a20925d8f13c6f903ba7a9dacd4e0c82da83fd41e9a860eeb8ad0', 'risk': None}
+2025-02-27 00:40:50,924 - FileAudit - WARNING - �ļ���������������: C:\Users\z1968\Desktop\client21462\temp\shadowsocks_2025-02.log
+2025-02-27 00:40:50,925 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 00:40:50', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'locked', 'risk': None}
+2025-02-27 00:41:14,633 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 00:41:14', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'db787742151f361781101afb528ebcf3da1f77cf91bdeac2585e0b8754c78456', 'risk': None}
+2025-02-27 00:41:23,175 - FileAudit - WARNING - 文件被其他进程锁定: C:\Users\z1968\Desktop\client21462\temp\shadowsocks_2025-02.log
+2025-02-27 00:41:23,175 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 00:41:23', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'locked', 'risk': None}
+2025-02-27 00:46:06,556 - FileAudit - WARNING - �ļ���������������: C:\Users\z1968\Desktop\client21462\temp\shadowsocks_2025-02.log
+2025-02-27 00:46:06,556 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 00:46:06', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'locked', 'risk': None}
+2025-02-27 00:46:08,636 - FileAudit - WARNING - 文件被其他进程锁定: C:\Users\z1968\Desktop\client21462\temp\shadowsocks_2025-02.log
+2025-02-27 00:46:08,636 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 00:46:08', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'locked', 'risk': None}
+2025-02-27 11:28:17,278 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:28:17', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '754931feabc1663ccaba5f0f743257baeefdc3f0d44ea34a00bb793728fa6e36', 'risk': None}
+2025-02-27 11:28:43,141 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:28:43', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '754931feabc1663ccaba5f0f743257baeefdc3f0d44ea34a00bb793728fa6e36', 'risk': None}
+2025-02-27 11:29:03,124 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:29:03', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '4611bb24e533b5df459a01a5aeadb1d4d6ffb1c93cffe15b410252da3d9ee452', 'risk': None}
+2025-02-27 11:29:30,309 - FileAudit - WARNING - Ȩ�޾ܾ������ļ�: C:\Users\z1968\Desktop\client21462 (�����Թ���Ա�������г���)
+2025-02-27 11:29:30,309 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:29:30', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'permission_denied', 'risk': None}
+2025-02-27 11:29:54,668 - FileAudit - WARNING - Ȩ�޾ܾ������ļ�: C:\Users\z1968\Desktop\client21462\temp (�����Թ���Ա�������г���)
+2025-02-27 11:29:54,668 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:29:54', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'permission_denied', 'risk': None}
+2025-02-27 11:30:00,508 - FileAudit - WARNING - �ļ���������������: C:\Users\z1968\Desktop\client21462\temp\shadowsocks_2025-02.log
+2025-02-27 11:30:00,509 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:30:00', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'locked', 'risk': None}
+2025-02-27 11:30:19,673 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:30:19', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '12baa42e17ece5c5aef857cb26355a0d7d8b9af51dce342b8c1cb6b4220ccdfd', 'risk': None}
+2025-02-27 11:30:37,515 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:30:37', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '754931feabc1663ccaba5f0f743257baeefdc3f0d44ea34a00bb793728fa6e36', 'risk': None}
+2025-02-27 11:31:00,567 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:31:00', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '290e0cbb6c8af290dbdcda5739f30e315b712e8ca3aca260ac75a4cf7c8302c4', 'risk': None}
+2025-02-27 11:31:19,926 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:31:19', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'd571e3132420e5128e7a6f7d549c0c7a0c0e25994740c6cc370759ab77d6d8a5', 'risk': None}
+2025-02-27 11:31:37,330 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:31:37', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'f3c264c53a2f14bce6ef41b3b5eba25f21695d37332954ffa71fc27462f03c24', 'risk': None}
+2025-02-27 11:31:56,022 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:31:56', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '08b4cefec2dccf71a61f2b4271e523a4d08766a062c28eaa71ec6b3ac64fa227', 'risk': None}
+2025-02-27 11:32:14,415 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:32:14', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '7e57cd4caab3aebb5f4f093f30e570b45ac6b66d176ae7b8342c2e272f9016a6', 'risk': None}
+2025-02-27 11:32:31,307 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:32:31', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '7695f45610d96c019789a22bd44f435035f7d3fafc3d50b71190adef44f6b26d', 'risk': None}
+2025-02-27 11:32:51,039 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:32:51', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'd33c58c4b5fa408fc9cbd61b5c49b84ab9586dd9b2d503d4a156beeed1d29c9f', 'risk': None}
+2025-02-27 11:33:13,009 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:33:13', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'ccdf790945a177bf90ffada64c926ba7dfb0d9cdfe706eae901a3aadbc03b6a1', 'risk': None}
+2025-02-27 11:33:30,561 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:33:30', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'f2cfd19373d180f55a998e69b2698dd07a31b73758dcf3316c88d8ca79531ad8', 'risk': None}
+2025-02-27 11:34:07,472 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:34:07', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'c81b82043df2900cb67d46c5ae46c38a5001445a095ef7cad3692a80a5cfe80c', 'risk': None}
+2025-02-27 11:34:29,333 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:34:29', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'a7e1b0d3bd3f3874e727c592ae2dd60f16498459e7d9e5c4db03fbc205b61d71', 'risk': None}
+2025-02-27 11:34:47,980 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:34:47', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'ba819d935e6dfbd033dcdf40327f3fe997632a479b18db0d01a2afd2781e13cd', 'risk': None}
+2025-02-27 11:35:07,518 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:35:07', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'ace7a1163c6ef3ffac48a493de347a765cd009712e3634a51659c94cca818424', 'risk': None}
+2025-02-27 11:35:26,963 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:35:26', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'e46907a52f33cd3cd461d63b854ef92fcd5d4496485cf6ed575a858e3f0bb915', 'risk': None}
+2025-02-27 11:35:45,838 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:35:45', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'cef36f0e3e02437febfc27b026ddf8ec55fa667eac4df5041f61a45e12da0332', 'risk': None}
+2025-02-27 11:36:04,430 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:36:04', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '69bcee85e382533cc37c4a0e45ac68db6150f4c2f6c3527a2cda3ea30f8aed0a', 'risk': None}
+2025-02-27 11:36:23,825 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:36:23', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '344167b8e515d4e1adbcd79ac6ae18265e1291aa9a588d5708023e5fbd226eb4', 'risk': None}
+2025-02-27 11:36:45,845 - FileAudit - INFO - ������¼ - {'timestamp': '2025-02-27 11:36:45', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '36f3f811048f8159330e9a9a08aa7293eb7fc4373bad04502f0609f992eeba0e', 'risk': None}
+2025-02-27 16:07:11,209 - FileAudit - ERROR - 配置加载失败: Extra data: line 24 column 1 (char 431)
+2025-02-27 16:07:11,210 - FileAudit - INFO - 开始监控目录: c:\Users\z1968\Documents\GitHub\Challenge_Cup\flask正式系统\uploads
+2025-02-27 16:07:11,210 - FileAudit - INFO - 开始监控目录: C:\Users\z1968\Desktop
+2025-02-27 16:07:11,323 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 16:07:11,323 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 16:07:18,384 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:07:18] "GET / HTTP/1.1" 200 -
+2025-02-27 16:07:40,503 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:07:40] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-27 16:07:47,238 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:07:47] "GET /login HTTP/1.1" 200 -
+2025-02-27 16:08:31,918 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:08:31] "POST /login HTTP/1.1" 200 -
+2025-02-27 16:08:31,950 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:08:31] "GET /admin HTTP/1.1" 200 -
+2025-02-27 16:08:56,779 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:08:56] "[33mGET /monitor HTTP/1.1[0m" 404 -
+2025-02-27 16:09:01,437 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:09:01] "GET /upload HTTP/1.1" 200 -
+2025-02-27 16:09:18,522 - werkzeug - INFO - 10.250.239.172 - - [27/Feb/2025 16:09:18] "[33mGET /ransomware HTTP/1.1[0m" 404 -
+2025-02-27 16:09:18,767 - werkzeug - INFO - 10.250.239.172 - - [27/Feb/2025 16:09:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-27 16:09:36,016 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:09:36] "[33mGET /upload_list HTTP/1.1[0m" 404 -
+2025-02-27 16:09:39,544 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:09:39] "GET /upload HTTP/1.1" 200 -
+2025-02-27 16:09:42,420 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:09:42', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'b39a7cf427f79bd57cb82fc2c5894d1b140e90997a41bbda46c0357f4199fe73', 'risk': None}
+2025-02-27 16:11:56,123 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:11:56] "[33mGET /ransomware HTTP/1.1[0m" 404 -
+2025-02-27 16:25:22,096 - FileAudit - INFO - 开始监控目录: C:\AuditTarget
+2025-02-27 16:25:22,096 - FileAudit - INFO - 开始监控目录: C:\Users\z1968\Desktop
+2025-02-27 16:25:22,108 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 16:25:22,108 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 16:25:32,880 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:25:32] "[33mGET / HTTP/1.1[0m" 404 -
+2025-02-27 16:25:39,011 - werkzeug - INFO - 10.250.239.172 - - [27/Feb/2025 16:25:39] "[33mGET / HTTP/1.1[0m" 404 -
+2025-02-27 16:32:15,220 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:32:15', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'ffb1e7d8b82befa91a3037403f7dcaef2ba8f86281d11038437d71e75aeefccd', 'risk': None}
+2025-02-27 16:32:25,576 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:32:25', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'ffb1e7d8b82befa91a3037403f7dcaef2ba8f86281d11038437d71e75aeefccd', 'risk': None}
+2025-02-27 16:32:43,243 - FileAudit - ERROR - 哈希计算失败[FileNotFoundError]: [Errno 2] No such file or directory: 'C:\\AuditTarget\\新建 BMP 图像.bmp'
+2025-02-27 16:32:43,243 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:32:43', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 16:32:43,253 - FileAudit - WARNING - 文件不可访问: C:\AuditTarget\新建 BMP 图像.bmp
+2025-02-27 16:32:43,253 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:32:43', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'unaccessible', 'risk': None}
+2025-02-27 16:32:43,260 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:32:43', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 16:32:43,268 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:32:43', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 16:34:18,038 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:34:18] "[33mGET / HTTP/1.1[0m" 404 -
+2025-02-27 16:36:17,230 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:36:17] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 16:36:17,256 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:36:17] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 16:37:05,890 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:37:05] "[33mGET / HTTP/1.1[0m" 404 -
+2025-02-27 16:40:39,277 - FileAudit - INFO - 开始监控目录: C:\AuditTarget
+2025-02-27 16:40:39,277 - FileAudit - INFO - 开始监控目录: C:\Users\z1968\Desktop
+2025-02-27 16:40:39,293 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 16:40:39,293 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 16:40:39,517 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:40:39] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:40:40,999 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:40:40] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:40:43,995 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:40:43] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:40:46,998 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:40:46] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:40:49,999 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:40:49] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:40:50,722 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:40:50] "[33mGET / HTTP/1.1[0m" 404 -
+2025-02-27 16:40:52,994 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:40:52] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:40:55,996 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:40:55] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:40:58,994 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:40:58] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:41:02,000 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:41:02] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:41:03,367 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:41:03] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 16:41:03,384 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:41:03] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 16:41:04,996 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:41:04] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:41:07,992 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:41:07] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:41:10,996 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:41:10] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:41:14,003 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:41:14] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:41:16,997 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:41:16] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:41:41,575 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:41:41', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'risk': None}
+2025-02-27 16:41:52,039 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:41:52] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:41:52,544 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:41:52', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'risk': None}
+2025-02-27 16:42:06,216 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:06] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:07,231 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:07] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:10,219 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:10] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:13,224 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:13] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:17,005 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:17] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:19,234 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:19] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:22,221 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:22] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:25,221 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:25] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:28,999 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:28] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:32,002 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:32] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:34,994 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:34] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:37,998 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:37] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:40,223 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:40] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:43,996 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:43] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:47,000 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:46] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:50,005 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:50] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:53,005 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:53] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:55,999 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:55] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:42:58,993 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:42:58] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:43:01,998 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:43:01] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:43:04,995 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:43:04] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:43:07,996 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:43:07] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:43:10,996 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:43:10] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:43:20,148 - FileAudit - INFO - 开始监控目录: C:\AuditTarget
+2025-02-27 16:43:20,148 - FileAudit - INFO - 开始监控目录: C:\Users\z1968\Desktop
+2025-02-27 16:43:20,164 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 16:43:20,164 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 16:43:20,261 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:43:20] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:43:23,006 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:43:23] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:43:26,005 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:43:26] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:43:28,995 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:43:28] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:43:31,995 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:43:31] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:43:34,995 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:43:34] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:43:38,140 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:43:38] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:43:50,049 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:43:50', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'risk': None}
+2025-02-27 16:43:52,014 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 16:43:52] "[33mGET /get_latest_data HTTP/1.1[0m" 404 -
+2025-02-27 16:44:01,457 - FileAudit - ERROR - 哈希计算失败[FileNotFoundError]: [Errno 2] No such file or directory: 'C:\\AuditTarget\\新建 DOCX 文档 (2).docx'
+2025-02-27 16:44:01,458 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:44:01', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 16:44:01,466 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:44:01', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 16:44:01,474 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:44:01', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 16:44:23,118 - FileAudit - INFO - 开始监控目录: C:\AuditTarget
+2025-02-27 16:44:23,118 - FileAudit - INFO - 开始监控目录: C:\Users\z1968\Desktop
+2025-02-27 16:44:23,129 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 16:44:23,129 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 16:44:47,411 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:44:47', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'e9359342fa8cd588d74c563af690b9c25de016fc7a5ba5c089a5f36cbf44e954', 'risk': None}
+2025-02-27 16:45:00,267 - FileAudit - ERROR - 哈希计算失败[FileNotFoundError]: [Errno 2] No such file or directory: 'C:\\AuditTarget\\新建 DOC 文档.doc'
+2025-02-27 16:45:00,267 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:45:00', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 16:45:00,276 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:45:00', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 16:51:22,763 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:51:22', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '12baa42e17ece5c5aef857cb26355a0d7d8b9af51dce342b8c1cb6b4220ccdfd', 'risk': None}
+2025-02-27 16:54:43,001 - FileAudit - INFO - 开始监控目录: C:\AuditTarget
+2025-02-27 16:54:43,002 - FileAudit - INFO - 开始监控目录: C:\Users\z1968\Desktop
+2025-02-27 16:54:43,013 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 16:54:43,013 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 16:54:52,564 - FileAudit - INFO - 开始监控目录: C:\AuditTarget
+2025-02-27 16:54:52,565 - FileAudit - INFO - 开始监控目录: C:\Users\z1968\Desktop
+2025-02-27 16:54:52,577 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 16:54:52,577 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 16:55:14,993 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:55:14', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'risk': None}
+2025-02-27 16:55:25,804 - FileAudit - ERROR - 哈希计算失败[FileNotFoundError]: [Errno 2] No such file or directory: 'C:\\AuditTarget\\新建 DOCX 文档.docx'
+2025-02-27 16:55:25,804 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:55:25', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 16:55:35,407 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:55:35', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '7e57cd4caab3aebb5f4f093f30e570b45ac6b66d176ae7b8342c2e272f9016a6', 'risk': None}
+2025-02-27 16:55:44,901 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:55:44', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '7695f45610d96c019789a22bd44f435035f7d3fafc3d50b71190adef44f6b26d', 'risk': None}
+2025-02-27 16:55:54,490 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:55:54', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'ccdf790945a177bf90ffada64c926ba7dfb0d9cdfe706eae901a3aadbc03b6a1', 'risk': None}
+2025-02-27 16:56:04,130 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:56:04', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'f2cfd19373d180f55a998e69b2698dd07a31b73758dcf3316c88d8ca79531ad8', 'risk': None}
+2025-02-27 16:56:13,637 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:56:13', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'c81b82043df2900cb67d46c5ae46c38a5001445a095ef7cad3692a80a5cfe80c', 'risk': None}
+2025-02-27 16:56:23,838 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:56:23', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'a7e1b0d3bd3f3874e727c592ae2dd60f16498459e7d9e5c4db03fbc205b61d71', 'risk': None}
+2025-02-27 16:56:40,581 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:56:40', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'ba819d935e6dfbd033dcdf40327f3fe997632a479b18db0d01a2afd2781e13cd', 'risk': None}
+2025-02-27 16:56:58,325 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:56:58', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'ace7a1163c6ef3ffac48a493de347a765cd009712e3634a51659c94cca818424', 'risk': None}
+2025-02-27 16:57:16,195 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:57:16', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'e46907a52f33cd3cd461d63b854ef92fcd5d4496485cf6ed575a858e3f0bb915', 'risk': None}
+2025-02-27 16:57:34,163 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:57:34', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'cef36f0e3e02437febfc27b026ddf8ec55fa667eac4df5041f61a45e12da0332', 'risk': None}
+2025-02-27 16:57:55,512 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:57:55', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '69bcee85e382533cc37c4a0e45ac68db6150f4c2f6c3527a2cda3ea30f8aed0a', 'risk': None}
+2025-02-27 16:58:16,247 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:58:16', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '344167b8e515d4e1adbcd79ac6ae18265e1291aa9a588d5708023e5fbd226eb4', 'risk': None}
+2025-02-27 16:58:34,693 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:58:34', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '36f3f811048f8159330e9a9a08aa7293eb7fc4373bad04502f0609f992eeba0e', 'risk': None}
+2025-02-27 16:58:50,557 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:58:50', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '842772239c61d9a0163f305988870435a88162503d30d55c0821c80c930cfa81', 'risk': None}
+2025-02-27 16:59:01,037 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:59:01', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '4eba114806ca04f04a23d625401440c88a179e902057a6a8aa43a0b7e7598469', 'risk': None}
+2025-02-27 16:59:11,067 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:59:11', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'a769652498cbc1c25c21b7038e1700b3872278a81da26ddb9f06d3718fbcab10', 'risk': None}
+2025-02-27 16:59:20,891 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:59:20', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '58e8fd10c34b3efe1e699687360614ae52acb81499b3021b2e3a8f02cdb6968c', 'risk': None}
+2025-02-27 16:59:36,303 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:59:36', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '2feb754bf746ce97ffc3ed2e6048e7cad16f444559e1949e1126fc6b2debca9c', 'risk': None}
+2025-02-27 16:59:54,413 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 16:59:54', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'a08566bda8daf1d362d32305f1df748647e6f1b2e957b70b942430731bfc3214', 'risk': None}
+2025-02-27 17:00:13,578 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:00:13', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'c462ee7e1b8ebf5240d94af76ae7eadd83f8ef20df7f4bb10616fc43605de3e2', 'risk': None}
+2025-02-27 17:00:31,707 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:00:31', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '08b4cefec2dccf71a61f2b4271e523a4d08766a062c28eaa71ec6b3ac64fa227', 'risk': None}
+2025-02-27 17:00:50,742 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:00:50', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'ff99cc191f3e2de8e444162ee5f1dbe25a7dd848b1883142a6863a347daf6afb', 'risk': None}
+2025-02-27 17:01:15,387 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:01:15', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '456e0300c351cb3eb094bfcbc64b9757596a0af0a574a8ee968ecea34834f038', 'risk': None}
+2025-02-27 17:01:40,272 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:01:40', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'f805a019ef98feacf90ca8d792fbeadd0ba25bdc88f7b2c66871b32ca618c26f', 'risk': None}
+2025-02-27 17:02:02,807 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:02:02', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '2abc6e2dd68c745da2971f0c04c7d713cb5270e58f82fac8b15f0458888ea8ea', 'risk': None}
+2025-02-27 17:02:21,904 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:02:21', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '2dd666adc2068ad3bf16a6b066580133ddace248f69c71a5ed03448bfbd37982', 'risk': None}
+2025-02-27 17:02:38,870 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:02:38', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'f3c264c53a2f14bce6ef41b3b5eba25f21695d37332954ffa71fc27462f03c24', 'risk': None}
+2025-02-27 17:02:56,145 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:02:56', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'd571e3132420e5128e7a6f7d549c0c7a0c0e25994740c6cc370759ab77d6d8a5', 'risk': None}
+2025-02-27 17:03:13,913 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:03:13', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'd33c58c4b5fa408fc9cbd61b5c49b84ab9586dd9b2d503d4a156beeed1d29c9f', 'risk': None}
+2025-02-27 17:03:13,922 - FileAudit - WARNING - 文件不可访问: C:\AuditTarget\新建 DOCX 文档 (2).docx
+2025-02-27 17:03:13,922 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:03:13', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'unaccessible', 'risk': None}
+2025-02-27 17:03:13,929 - FileAudit - WARNING - 文件不可访问: C:\AuditTarget\新建 DOCX 文档 (2).docx
+2025-02-27 17:03:13,929 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:03:13', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'unaccessible', 'risk': None}
+2025-02-27 17:03:13,936 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:03:13', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 17:03:13,944 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:03:13', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 17:03:26,442 - FileAudit - INFO - 开始监控目录: C:\AuditTarget
+2025-02-27 17:03:26,443 - FileAudit - INFO - 开始监控目录: C:\Users\z1968\Desktop
+2025-02-27 17:03:26,458 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 17:03:26,458 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 17:04:01,276 - FileAudit - ERROR - 哈希计算失败[FileNotFoundError]: [Errno 2] No such file or directory: 'C:\\AuditTarget\\新建 DOCX 文档.docx'
+2025-02-27 17:04:01,276 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:04:01', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 17:04:01,287 - FileAudit - WARNING - 文件不可访问: C:\AuditTarget\新建 DOCX 文档.docx
+2025-02-27 17:04:01,287 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:04:01', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'unaccessible', 'risk': None}
+2025-02-27 17:04:01,294 - FileAudit - WARNING - 文件不可访问: C:\AuditTarget\新建 DOCX 文档 (2).docx
+2025-02-27 17:04:01,294 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:04:01', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'unaccessible', 'risk': None}
+2025-02-27 17:04:01,302 - FileAudit - WARNING - 文件不可访问: C:\AuditTarget\新建 DOCX 文档 (2).docx
+2025-02-27 17:04:01,302 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:04:01', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'unaccessible', 'risk': None}
+2025-02-27 17:04:01,310 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:04:01', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 17:04:01,317 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:04:01', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 17:04:35,500 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:04:35', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'risk': None}
+2025-02-27 17:04:45,442 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:04:45', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'risk': None}
+2025-02-27 17:19:35,429 - FileAudit - INFO - 开始监控目录: C:\AuditTarget
+2025-02-27 17:19:35,430 - FileAudit - INFO - 开始监控目录: C:\Users\z1968\Desktop
+2025-02-27 17:19:35,443 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 17:19:35,443 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 17:19:57,414 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:19:57', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'f60c9e0c42f5bb35089bc852acbd378132437aaac346dd78432d59b1af11e16c', 'risk': None}
+2025-02-27 17:20:08,125 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:20:08', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'f60c9e0c42f5bb35089bc852acbd378132437aaac346dd78432d59b1af11e16c', 'risk': None}
+2025-02-27 17:20:18,860 - FileAudit - ERROR - 哈希计算失败[FileNotFoundError]: [Errno 2] No such file or directory: 'C:\\AuditTarget\\新建 DOCX 文档 (2).docx'
+2025-02-27 17:20:18,860 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:20:18', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 17:20:18,868 - FileAudit - WARNING - 文件不可访问: C:\AuditTarget\新建 DOCX 文档 (2).docx
+2025-02-27 17:20:18,869 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:20:18', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'unaccessible', 'risk': None}
+2025-02-27 17:20:18,875 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:20:18', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 17:20:18,882 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:20:18', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 17:20:18,890 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:20:18', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 17:21:27,881 - FileAudit - INFO - 开始监控目录: C:\AuditTarget
+2025-02-27 17:21:27,882 - FileAudit - INFO - 开始监控目录: C:\Users\z1968\Desktop
+2025-02-27 17:21:27,896 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 17:21:27,896 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 17:25:48.938 - FileAudit - INFO - 开始监控: C:\AuditTarget
+2025-02-27 17:25:48.938 - FileAudit - INFO - 开始监控: C:\Users\z1968\Desktop
+2025-02-27 17:25:48.949 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 17:25:48.949 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 17:25:51,476 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:25:51] "[33mGET / HTTP/1.1[0m" 404 -
+2025-02-27 17:26:02,825 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:26:02] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 17:26:02,842 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:26:02] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 17:32:56.096 - FileAudit - INFO - 开始监控: C:\AuditTarget
+2025-02-27 17:32:56.097 - FileAudit - INFO - 开始监控: C:\Users\z1968\Desktop
+2025-02-27 17:32:56.108 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 17:32:56.109 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 17:33:12,629 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:33:12] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 17:33:12,643 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:33:12] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 17:33:33,703 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:33:33] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-27 17:34:53,822 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:34:53] "[33mGET /dashboard//api/audit-data HTTP/1.1[0m" 404 -
+2025-02-27 17:34:59,513 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:34:59] "[33mGET /dashboard/api/audit-data HTTP/1.1[0m" 404 -
+2025-02-27 17:36:03,046 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:36:03] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 17:36:03,062 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:36:03] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 17:51:24,911 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:51:24', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '12baa42e17ece5c5aef857cb26355a0d7d8b9af51dce342b8c1cb6b4220ccdfd', 'risk': None}
+2025-02-27 17:56:58,011 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:56:58', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'b39a7cf427f79bd57cb82fc2c5894d1b140e90997a41bbda46c0357f4199fe73', 'risk': None}
+2025-02-27 17:57:09,987 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:57:09', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'f805a019ef98feacf90ca8d792fbeadd0ba25bdc88f7b2c66871b32ca618c26f', 'risk': None}
+2025-02-27 17:57:24.939 - FileAudit - INFO - 开始监控: C:\AuditTarget
+2025-02-27 17:57:24.940 - FileAudit - INFO - 开始监控: C:\Users\z1968\Desktop
+2025-02-27 17:57:24.951 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 17:57:24.951 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 17:57:31,450 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:57:31] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 17:57:31,462 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:57:31] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 17:57:46,215 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:57:46] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 17:57:46,327 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:57:46] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 17:57:47,515 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:57:47] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 17:57:47,527 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:57:47] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 17:58:11,733 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:58:11', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'risk': None}
+2025-02-27 17:58:23,841 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:58:23', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'risk': None}
+2025-02-27 17:58:36,028 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:58:36', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '7e57cd4caab3aebb5f4f093f30e570b45ac6b66d176ae7b8342c2e272f9016a6', 'risk': None}
+2025-02-27 17:58:40,998 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:58:40] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 17:58:48,901 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:58:48', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '7695f45610d96c019789a22bd44f435035f7d3fafc3d50b71190adef44f6b26d', 'risk': None}
+2025-02-27 17:59:02,504 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:59:02', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'd33c58c4b5fa408fc9cbd61b5c49b84ab9586dd9b2d503d4a156beeed1d29c9f', 'risk': None}
+2025-02-27 17:59:15,292 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:59:15', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'ccdf790945a177bf90ffada64c926ba7dfb0d9cdfe706eae901a3aadbc03b6a1', 'risk': None}
+2025-02-27 17:59:20,158 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:59:20] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 17:59:20,171 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:59:20] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 17:59:26,743 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:59:26] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 17:59:26,825 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 17:59:26] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 17:59:28,149 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:59:28', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'f2cfd19373d180f55a998e69b2698dd07a31b73758dcf3316c88d8ca79531ad8', 'risk': None}
+2025-02-27 17:59:40,683 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:59:40', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'c81b82043df2900cb67d46c5ae46c38a5001445a095ef7cad3692a80a5cfe80c', 'risk': None}
+2025-02-27 17:59:53,568 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 17:59:53', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'a7e1b0d3bd3f3874e727c592ae2dd60f16498459e7d9e5c4db03fbc205b61d71', 'risk': None}
+2025-02-27 18:00:06,026 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:00:06', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'ba819d935e6dfbd033dcdf40327f3fe997632a479b18db0d01a2afd2781e13cd', 'risk': None}
+2025-02-27 18:00:18,250 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:00:18', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'ace7a1163c6ef3ffac48a493de347a765cd009712e3634a51659c94cca818424', 'risk': None}
+2025-02-27 18:00:30,385 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:00:30', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'e46907a52f33cd3cd461d63b854ef92fcd5d4496485cf6ed575a858e3f0bb915', 'risk': None}
+2025-02-27 18:00:42,374 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:00:42', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'cef36f0e3e02437febfc27b026ddf8ec55fa667eac4df5041f61a45e12da0332', 'risk': None}
+2025-02-27 18:00:55,915 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:00:55', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '69bcee85e382533cc37c4a0e45ac68db6150f4c2f6c3527a2cda3ea30f8aed0a', 'risk': None}
+2025-02-27 18:00:58,449 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:00:58] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 18:01:09,055 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:01:09', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '344167b8e515d4e1adbcd79ac6ae18265e1291aa9a588d5708023e5fbd226eb4', 'risk': None}
+2025-02-27 18:01:22,202 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:01:22', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '36f3f811048f8159330e9a9a08aa7293eb7fc4373bad04502f0609f992eeba0e', 'risk': None}
+2025-02-27 18:01:41,709 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:01:41', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '842772239c61d9a0163f305988870435a88162503d30d55c0821c80c930cfa81', 'risk': None}
+2025-02-27 18:01:58,546 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:01:58', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '4eba114806ca04f04a23d625401440c88a179e902057a6a8aa43a0b7e7598469', 'risk': None}
+2025-02-27 18:02:16,716 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:02:16', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'a769652498cbc1c25c21b7038e1700b3872278a81da26ddb9f06d3718fbcab10', 'risk': None}
+2025-02-27 18:02:36,992 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:02:36', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '58e8fd10c34b3efe1e699687360614ae52acb81499b3021b2e3a8f02cdb6968c', 'risk': None}
+2025-02-27 18:02:59,057 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:02:59', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '2feb754bf746ce97ffc3ed2e6048e7cad16f444559e1949e1126fc6b2debca9c', 'risk': None}
+2025-02-27 18:03:21,330 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:03:21', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'a08566bda8daf1d362d32305f1df748647e6f1b2e957b70b942430731bfc3214', 'risk': None}
+2025-02-27 18:03:41,777 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:03:41', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'c462ee7e1b8ebf5240d94af76ae7eadd83f8ef20df7f4bb10616fc43605de3e2', 'risk': None}
+2025-02-27 18:04:01,439 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:04:01', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '08b4cefec2dccf71a61f2b4271e523a4d08766a062c28eaa71ec6b3ac64fa227', 'risk': None}
+2025-02-27 18:04:23,931 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:04:23', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'ff99cc191f3e2de8e444162ee5f1dbe25a7dd848b1883142a6863a347daf6afb', 'risk': None}
+2025-02-27 18:04:38,144 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:04:38', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '456e0300c351cb3eb094bfcbc64b9757596a0af0a574a8ee968ecea34834f038', 'risk': None}
+2025-02-27 18:04:50,105 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:04:50', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '2abc6e2dd68c745da2971f0c04c7d713cb5270e58f82fac8b15f0458888ea8ea', 'risk': None}
+2025-02-27 18:05:01.186 - FileAudit - INFO - 开始监控: C:\AuditTarget
+2025-02-27 18:05:01.186 - FileAudit - INFO - 开始监控: C:\Users\z1968\Desktop
+2025-02-27 18:05:01.199 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 18:05:01.199 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 18:05:02,597 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:05:02', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': '2dd666adc2068ad3bf16a6b066580133ddace248f69c71a5ed03448bfbd37982', 'risk': None}
+2025-02-27 18:05:15,244 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:05:15', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'f3c264c53a2f14bce6ef41b3b5eba25f21695d37332954ffa71fc27462f03c24', 'risk': None}
+2025-02-27 18:05:28,503 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:05:28', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'd571e3132420e5128e7a6f7d549c0c7a0c0e25994740c6cc370759ab77d6d8a5', 'risk': None}
+2025-02-27 18:05:40,745 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:05:40', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'risk': None}
+2025-02-27 18:05:53,015 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:05:53', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'risk': None}
+2025-02-27 18:05:53,025 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:05:53', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 18:05:53,033 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:05:53', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 18:06:04,993 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:06:04', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'risk': None}
+2025-02-27 18:06:18,385 - FileAudit - ERROR - 哈希计算失败[FileNotFoundError]: [Errno 2] No such file or directory: 'C:\\AuditTarget\\新建 DOCX 文档.docx'
+2025-02-27 18:06:18,386 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:06:18', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 18:06:18,396 - FileAudit - WARNING - 文件不可访问: C:\AuditTarget\新建 DOCX 文档 (2).docx
+2025-02-27 18:06:18,397 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:06:18', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'unaccessible', 'risk': None}
+2025-02-27 18:06:18,405 - FileAudit - WARNING - 文件不可访问: C:\AuditTarget\新建 DOCX 文档 (2).docx
+2025-02-27 18:06:18,406 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:06:18', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'unaccessible', 'risk': None}
+2025-02-27 18:06:18,415 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:06:18', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 18:06:18,423 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:06:18', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 18:06:27,530 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:06:27] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 18:06:27,546 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:06:27] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 18:06:30,468 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:06:30] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 18:06:30,610 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:06:30] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 18:06:32,396 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:06:32] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 18:06:32,408 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:06:32] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 18:06:51,735 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:06:51] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 18:06:51,876 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:06:51] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 18:06:53,265 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:06:53] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 18:06:53,278 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:06:53] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 18:07:58,488 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:07:58] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 18:07:58,501 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:07:58] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 18:08:00,529 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:08:00] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 18:08:00,681 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:08:00] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 18:08:10.771 - FileAudit - INFO - 开始监控: C:\AuditTarget
+2025-02-27 18:08:10.772 - FileAudit - INFO - 开始监控: C:\Users\z1968\Desktop
+2025-02-27 18:08:10.782 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 18:08:10.782 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 18:08:32,854 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:08:32', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'risk': None}
+2025-02-27 18:08:46,332 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:08:46', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'risk': None}
+2025-02-27 18:09:06,060 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:09:06', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 18:09:14,020 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:09:14] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 18:09:14,033 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:09:14] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 18:09:40,238 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:09:40] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 18:09:40,324 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:09:40] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 18:10:33.133 - FileAudit - INFO - 开始监控: C:\AuditTarget
+2025-02-27 18:10:33.134 - FileAudit - INFO - 开始监控: C:\Users\z1968\Desktop
+2025-02-27 18:10:33.144 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 18:10:33.145 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 18:10:57,063 - FileAudit - ERROR - 哈希计算失败[FileNotFoundError]: [Errno 2] No such file or directory: 'C:\\AuditTarget\\新建 DOCX 文档.docx'
+2025-02-27 18:10:57,069 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:10:57', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 18:10:57,082 - FileAudit - WARNING - 文件不可访问: C:\AuditTarget\新建 DOCX 文档.docx
+2025-02-27 18:10:57,085 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:10:57', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'unaccessible', 'risk': None}
+2025-02-27 18:10:57,088 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:10:57] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 18:10:57,093 - FileAudit - WARNING - 文件不可访问: C:\AuditTarget\新建 DOCX 文档 (2).docx
+2025-02-27 18:10:57,093 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:10:57', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'unaccessible', 'risk': None}
+2025-02-27 18:10:57,101 - FileAudit - WARNING - 文件不可访问: C:\AuditTarget\新建 DOCX 文档 (2).docx
+2025-02-27 18:10:57,102 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:10:57', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'unaccessible', 'risk': None}
+2025-02-27 18:10:57,110 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:10:57', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 18:10:57,118 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:10:57', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 18:10:58,509 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:10:58] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 18:10:58,522 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:10:58] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 18:10:59,718 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:10:59] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 18:10:59,730 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:10:59] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 18:13:08,763 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:13:08] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 18:13:08,776 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:13:08] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 18:13:11,954 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:13:11] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 18:13:12,100 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:13:12] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 18:13:13,356 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:13:13] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 18:13:13,370 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:13:13] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 18:20:51.573 - FileAudit - INFO - 启动文件监控审计系统...
+2025-02-27 18:20:51.601 - FileAudit - DEBUG - 启动监控服务
+2025-02-27 18:20:51.601 - FileAudit - DEBUG - 配置文件加载成功
+2025-02-27 18:20:51.601 - FileAudit - DEBUG - 数据库初始化完成
+2025-02-27 18:20:51.602 - FileAudit - DEBUG - 事件处理器初始化完成
+2025-02-27 18:20:51.602 - FileAudit - DEBUG - 事件处理线程启动
+2025-02-27 18:20:51.602 - FileAudit - DEBUG - 文件审计器初始化完成
+2025-02-27 18:20:51.602 - FileAudit - DEBUG - 尝试监控路径: C:\AuditTarget
+2025-02-27 18:20:51.602 - FileAudit - INFO - 成功监控路径: C:\AuditTarget
+2025-02-27 18:20:51.602 - FileAudit - DEBUG - 尝试监控路径: C:\Users\z1968\Desktop
+2025-02-27 18:20:51.603 - FileAudit - INFO - 成功监控路径: C:\Users\z1968\Desktop
+2025-02-27 18:20:51.613 - FileAudit - DEBUG - 观察者线程已启动
+2025-02-27 18:20:51.623 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.250.239.172:5000
+2025-02-27 18:20:51.623 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 18:20:52.613 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:20:53.614 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:20:54.615 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:20:55.615 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:20:56.616 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:20:57.616 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:20:58.617 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:20:59.618 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:00.618 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:01.619 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:02.620 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:03.620 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:04.621 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:05,054 - FileAudit - WARNING - 权限拒绝访问文件: C:\Users\z1968\Desktop\client21462 (建议以管理员身份运行程序)
+2025-02-27 18:21:05,056 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:21:05', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'permission_denied', 'risk': None}
+2025-02-27 18:21:05.622 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:06.623 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:07.624 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:08.625 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:09.625 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:10.626 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:11.626 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:12.627 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:13.628 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:14.628 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:15.630 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:15.864 - FileAudit - DEBUG - 原始事件捕获: created C:\AuditTarget\新建 DOCX 文档.docx
+2025-02-27 18:21:15.864 - FileAudit - DEBUG - 原始事件捕获: modified C:\AuditTarget
+2025-02-27 18:21:15.865 - FileAudit - DEBUG - 从队列获取事件: created C:\AuditTarget\新建 DOCX 文档.docx -> 
+2025-02-27 18:21:15.866 - FileAudit - DEBUG - 开始处理事件: created C:\AuditTarget\新建 DOCX 文档.docx
+2025-02-27 18:21:15.866 - FileAudit - DEBUG - 处理路径: C:\AuditTarget\新建 DOCX 文档.docx
+2025-02-27 18:21:15.867 - FileAudit - INFO - 强制记录事件: {'user': 'z1968', 'role': 'user', 'event_type': 'created', 'path': 'C:\\AuditTarget\\新建 DOCX 文档.docx', 'hash': 'TEST_HASH', 'risk': None}
+2025-02-27 18:21:15.877 - FileAudit - DEBUG - 成功写入日志: {'user': 'z1968', 'role': 'user', 'event_type': 'created', 'path': 'C:\\AuditTarget\\新建 DOCX 文档.docx', 'hash': 'TEST_HASH', 'risk': None}
+2025-02-27 18:21:15.877 - FileAudit - DEBUG - 从队列获取事件: modified C:\AuditTarget -> 
+2025-02-27 18:21:15.878 - FileAudit - DEBUG - 开始处理事件: modified C:\AuditTarget
+2025-02-27 18:21:15.878 - FileAudit - DEBUG - 处理路径: C:\AuditTarget
+2025-02-27 18:21:15.878 - FileAudit - INFO - 强制记录事件: {'user': 'z1968', 'role': 'user', 'event_type': 'modified', 'path': 'C:\\AuditTarget', 'hash': 'TEST_HASH', 'risk': None}
+2025-02-27 18:21:15.887 - FileAudit - DEBUG - 成功写入日志: {'user': 'z1968', 'role': 'user', 'event_type': 'modified', 'path': 'C:\\AuditTarget', 'hash': 'TEST_HASH', 'risk': None}
+2025-02-27 18:21:16.630 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:17.631 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:18.632 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:19.632 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:19,909 - FileAudit - WARNING - 权限拒绝访问文件: C:\Users\z1968\Desktop\client21462\temp (建议以管理员身份运行程序)
+2025-02-27 18:21:19,910 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:21:19', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'permission_denied', 'risk': None}
+2025-02-27 18:21:20.633 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:21.634 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:22.635 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:23.636 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:24.636 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:25.638 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:26.639 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:27.640 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:28.640 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:29.641 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:30.641 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:31.642 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:32.007 - FileAudit - DEBUG - 原始事件捕获: created C:\AuditTarget\新建 DOCX 文档 (2).docx
+2025-02-27 18:21:32.008 - FileAudit - DEBUG - 原始事件捕获: modified C:\AuditTarget
+2025-02-27 18:21:32.008 - FileAudit - DEBUG - 从队列获取事件: created C:\AuditTarget\新建 DOCX 文档 (2).docx -> 
+2025-02-27 18:21:32.008 - FileAudit - DEBUG - 开始处理事件: created C:\AuditTarget\新建 DOCX 文档 (2).docx
+2025-02-27 18:21:32.008 - FileAudit - DEBUG - 处理路径: C:\AuditTarget\新建 DOCX 文档 (2).docx
+2025-02-27 18:21:32.009 - FileAudit - INFO - 强制记录事件: {'user': 'z1968', 'role': 'user', 'event_type': 'created', 'path': 'C:\\AuditTarget\\新建 DOCX 文档 (2).docx', 'hash': 'TEST_HASH', 'risk': None}
+2025-02-27 18:21:32.018 - FileAudit - DEBUG - 成功写入日志: {'user': 'z1968', 'role': 'user', 'event_type': 'created', 'path': 'C:\\AuditTarget\\新建 DOCX 文档 (2).docx', 'hash': 'TEST_HASH', 'risk': None}
+2025-02-27 18:21:32.019 - FileAudit - DEBUG - 从队列获取事件: modified C:\AuditTarget -> 
+2025-02-27 18:21:32.019 - FileAudit - DEBUG - 开始处理事件: modified C:\AuditTarget
+2025-02-27 18:21:32.020 - FileAudit - DEBUG - 处理路径: C:\AuditTarget
+2025-02-27 18:21:32.020 - FileAudit - INFO - 强制记录事件: {'user': 'z1968', 'role': 'user', 'event_type': 'modified', 'path': 'C:\\AuditTarget', 'hash': 'TEST_HASH', 'risk': None}
+2025-02-27 18:21:32.029 - FileAudit - DEBUG - 成功写入日志: {'user': 'z1968', 'role': 'user', 'event_type': 'modified', 'path': 'C:\\AuditTarget', 'hash': 'TEST_HASH', 'risk': None}
+2025-02-27 18:21:32.643 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:33.644 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:34,224 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:21:34', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'risk': None}
+2025-02-27 18:21:34.645 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:35.645 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:36.646 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:37.647 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:38.647 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:39.648 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:40.091 - FileAudit - DEBUG - 原始事件捕获: deleted C:\AuditTarget\新建 DOCX 文档.docx
+2025-02-27 18:21:40.092 - FileAudit - DEBUG - 原始事件捕获: deleted C:\AuditTarget\新建 DOCX 文档 (2).docx
+2025-02-27 18:21:40.092 - FileAudit - DEBUG - 从队列获取事件: deleted C:\AuditTarget\新建 DOCX 文档.docx -> 
+2025-02-27 18:21:40.092 - FileAudit - DEBUG - 原始事件捕获: modified C:\AuditTarget
+2025-02-27 18:21:40.092 - FileAudit - DEBUG - 开始处理事件: deleted C:\AuditTarget\新建 DOCX 文档.docx
+2025-02-27 18:21:40.093 - FileAudit - DEBUG - 处理路径: C:\AuditTarget\新建 DOCX 文档.docx
+2025-02-27 18:21:40.093 - FileAudit - INFO - 强制记录事件: {'user': 'z1968', 'role': 'user', 'event_type': 'deleted', 'path': 'C:\\AuditTarget\\新建 DOCX 文档.docx', 'hash': None, 'risk': None}
+2025-02-27 18:21:40.102 - FileAudit - DEBUG - 成功写入日志: {'user': 'z1968', 'role': 'user', 'event_type': 'deleted', 'path': 'C:\\AuditTarget\\新建 DOCX 文档.docx', 'hash': None, 'risk': None}
+2025-02-27 18:21:40.103 - FileAudit - DEBUG - 从队列获取事件: deleted C:\AuditTarget\新建 DOCX 文档 (2).docx -> 
+2025-02-27 18:21:40.103 - FileAudit - DEBUG - 开始处理事件: deleted C:\AuditTarget\新建 DOCX 文档 (2).docx
+2025-02-27 18:21:40.103 - FileAudit - DEBUG - 处理路径: C:\AuditTarget\新建 DOCX 文档 (2).docx
+2025-02-27 18:21:40.103 - FileAudit - INFO - 强制记录事件: {'user': 'z1968', 'role': 'user', 'event_type': 'deleted', 'path': 'C:\\AuditTarget\\新建 DOCX 文档 (2).docx', 'hash': None, 'risk': None}
+2025-02-27 18:21:40.112 - FileAudit - DEBUG - 成功写入日志: {'user': 'z1968', 'role': 'user', 'event_type': 'deleted', 'path': 'C:\\AuditTarget\\新建 DOCX 文档 (2).docx', 'hash': None, 'risk': None}
+2025-02-27 18:21:40.112 - FileAudit - DEBUG - 从队列获取事件: modified C:\AuditTarget -> 
+2025-02-27 18:21:40.113 - FileAudit - DEBUG - 开始处理事件: modified C:\AuditTarget
+2025-02-27 18:21:40.113 - FileAudit - DEBUG - 处理路径: C:\AuditTarget
+2025-02-27 18:21:40.113 - FileAudit - INFO - 强制记录事件: {'user': 'z1968', 'role': 'user', 'event_type': 'modified', 'path': 'C:\\AuditTarget', 'hash': 'TEST_HASH', 'risk': None}
+2025-02-27 18:21:40.121 - FileAudit - DEBUG - 成功写入日志: {'user': 'z1968', 'role': 'user', 'event_type': 'modified', 'path': 'C:\\AuditTarget', 'hash': 'TEST_HASH', 'risk': None}
+2025-02-27 18:21:40.649 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:41.650 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:42.651 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:43.652 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:44.653 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:45.654 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:46.654 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:47.655 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:48.656 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:49,299 - FileAudit - ERROR - 哈希计算失败[FileNotFoundError]: [Errno 2] No such file or directory: 'C:\\AuditTarget\\新建 DOCX 文档.docx'
+2025-02-27 18:21:49,300 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:21:49', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 18:21:49,309 - FileAudit - WARNING - 文件不可访问: C:\AuditTarget\新建 DOCX 文档 (2).docx
+2025-02-27 18:21:49,310 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:21:49', 'user': 'z1968', 'role': 'staff', 'event_type': 'created', 'path': '', 'hash': 'unaccessible', 'risk': None}
+2025-02-27 18:21:49,318 - FileAudit - WARNING - 文件不可访问: C:\AuditTarget\新建 DOCX 文档 (2).docx
+2025-02-27 18:21:49,319 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:21:49', 'user': 'z1968', 'role': 'staff', 'event_type': 'modified', 'path': '', 'hash': 'unaccessible', 'risk': None}
+2025-02-27 18:21:49,327 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:21:49', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 18:21:49,335 - FileAudit - INFO - 操作记录 - {'timestamp': '2025-02-27 18:21:49', 'user': 'z1968', 'role': 'staff', 'event_type': 'deleted', 'path': '', 'hash': None, 'risk': None}
+2025-02-27 18:21:49.656 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:50.657 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:51.658 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:52.658 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:53.659 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:54.660 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:55.661 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:56.662 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:57.663 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:58.664 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:59.665 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:21:59,727 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:21:59] "GET /dashboard HTTP/1.1" 200 -
+2025-02-27 18:21:59,743 - werkzeug - INFO - 127.0.0.1 - - [27/Feb/2025 18:21:59] "[33mGET /static/audit_dashboard.png HTTP/1.1[0m" 404 -
+2025-02-27 18:22:00.667 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:01.668 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:02.669 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:03.670 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:04.671 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:05.672 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:06.673 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:07.674 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:08.675 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:09.676 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:10.678 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:11.679 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:12.680 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:13.681 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:14.682 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:15.683 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:16.684 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:17.686 - FileAudit - DEBUG - 监控服务运行中...
+2025-02-27 18:22:18.687 - FileAudit - DEBUG - 监控服务运行中...

@@ -1,15 +1,131 @@
 {
-    "path_patterns": ["^.*AuditTest.*$"],  
-    "exclude_patterns": ["^.*temp.*$"],  
-    "file_extensions": [".docx", ".xlsx"],
-    "global_thresholds": {
-      "delete": 2, 
-      "modify": 5  
-    },
-    "role_thresholds": {
-      "admin": {
-        "delete": 5,
-        "modify": 10
+  "environments": {
+      "development": {
+          "description": "开发环境配置",
+          "enable_alert": false
+      },
+      "production": {
+          "description": "生产环境配置",
+          "enable_alert": true
       }
-    }
+  },
+  
+  "monitoring": {
+      "paths": [
+          {
+              "path": "C:\\AuditTarget",
+              "recursive": true,
+              "watch_modes": ["create", "modify", "delete", "move"],
+              "priority": "high"
+          },
+          {
+              "path": "/var/logs",
+              "recursive": false,
+              "watch_modes": ["create", "modify"],
+              "priority": "medium"
+          }
+      ],
+      
+      "exclusions": {
+          "patterns": [
+              ".*\\.tmp$",
+              "^~\\$.*",
+              "/backups/"
+          ],
+          "extensions": [".log", ".bak"],
+          "hidden_files": true
+      }
+  },
+
+  "file_policies": [
+      {
+          "category": "财务文档",
+          "extensions": [".xlsx", ".xls", ".docx"],
+          "content_keywords": ["机密", "薪资", "合同"],
+          "max_size_mb": 10,
+          "retention_days": 365
+      },
+      {
+          "category": "日志文件",
+          "extensions": [".log", ".txt"],
+          "content_keywords": ["error", "warning"],
+          "max_size_mb": 100,
+          "retention_days": 30
+      }
+  ],
+
+  "security": {
+      "roles": {
+          "admin": {
+              "thresholds": {
+                  "delete": {"count": 20, "period": 60},
+                  "modify": {"count": 50, "period": 300}
+              },
+              "permissions": ["full_access", "export_reports"]
+          },
+          "developer": {
+              "thresholds": {
+                  "delete": {"count": 5, "period": 60},
+                  "modify": {"count": 20, "period": 300}
+              },
+              "permissions": ["read_only"]
+          }
+      },
+      
+      "global_thresholds": {
+          "create": {"count": 100, "period": 60},
+          "modify": {"count": 200, "period": 300}
+      }
+  },
+
+  "notifications": {
+      "email": {
+          "smtp_server": "smtp.example.com",
+          "port": 587,
+          "sender": "audit@company.com",
+          "receivers": ["security-team@company.com", "admin@company.com"],
+          "trigger_conditions": ["high_risk", "threshold_breach"]
+      },
+      "webhook": {
+          "url": "https://alert.example.com/api/v1/alerts",
+          "headers": {
+              "Authorization": "Bearer ${WEBHOOK_TOKEN}"
+          },
+          "retry_policy": {
+              "max_attempts": 3,
+              "backoff_factor": 1.5
+          }
+      }
+  },
+
+  "advanced": {
+      "hashing": {
+          "algorithm": "sha256",
+          "buffer_size": 4096,
+          "verify_integrity": true
+      },
+      "concurrency": {
+          "max_workers": 8,
+          "queue_size": 1000
+      },
+      "data_retention": {
+          "log_days": 180,
+          "archiving": {
+              "enabled": true,
+              "s3_bucket": "audit-logs-archive",
+              "schedule": "weekly"
+          }
+      }
+  },
+
+  "misc": {
+      "localization": {
+          "language": "zh-CN",
+          "timezone": "Asia/Shanghai"
+      },
+      "debug": {
+          "enable_verbose_logging": false,
+          "log_sensitive_data": false
+      }
   }
+}
