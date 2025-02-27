@@ -43,13 +43,50 @@
             <form action="/perform_backup" method="POST" id="backupForm">
                 <!-- 备份位置选择 -->
                 <div class="mb-4">
-                    <label class="form-label">备份位置</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="backupPath" name="backupPath" 
-                               placeholder="请选择备份位置" required>
-                        <button class="btn btn-outline-secondary" type="button" id="selectPath">
-                            <i class="fas fa-folder-open"></i> 浏览
-                        </button>
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="form-check form-switch me-4">
+                            <input class="form-check-input" type="checkbox" id="localBackupSwitch" checked>
+                            <label class="form-check-label" for="localBackupSwitch">本地备份</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="cloudBackupSwitch">
+                            <label class="form-check-label" for="cloudBackupSwitch">云端备份</label>
+                        </div>
+                    </div>
+                    
+                    <!-- 本地备份路径 -->
+                    <div id="localBackupPath">
+                        <label class="form-label">本地备份位置</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="backupPath" name="backupPath" 
+                                   placeholder="请选择备份位置" required>
+                            <button class="btn btn-outline-secondary" type="button" id="selectPath">
+                                <i class="fas fa-folder-open"></i> 浏览
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 云端备份路径 -->
+                    <div id="cloudBackupPath" class="mt-3" style="display: none;">
+                        <label class="form-label">云端备份位置</label>
+                        <div class="input-group">
+                            <select class="form-select" id="cloudProvider" name="cloudProvider">
+                                <option value="qcloud">腾讯云 COS</option>
+                                <option value="aliyun">阿里云 OSS</option>
+                                <option value="aws">亚马逊 S3</option>
+                            </select>
+                            <input type="text" class="form-control" id="cloudPath" name="cloudPath" 
+                                   placeholder="例如: backup/ 或 documents/"
+                                   pattern="^[a-z0-9_/-]+$"
+                                   title="路径只能包含小写字母、数字、下划线和斜杠">
+                            <button class="btn btn-outline-secondary" type="button" id="createCloudPath">
+                                <i class="fas fa-folder-plus"></i> 创建路径
+                            </button>
+                        </div>
+                        <small class="form-text text-muted">
+                            请使用小写字母。例如：backup/、documents/、backup/2024/ 等。
+                            路径必须以斜杠(/)结尾。如果路径不存在将自动创建。
+                        </small>
                     </div>
                 </div>
 
@@ -121,26 +158,19 @@
         </div>
     </div>
 </div>
-<!-- 添加进度提示模态框 -->
+<!-- 添加进度条模态框 -->
 <div class="modal fade" id="backupProgressModal" data-bs-backdrop="static" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">备份进行中</h5>
+                <h5 class="modal-title">备份进度</h5>
             </div>
             <div class="modal-body">
-                <div class="text-center mb-3">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">备份中...</span>
-                    </div>
-                </div>
-                <div id="backupStatus" class="text-center">
-                    正在备份文件，请稍候...
-                </div>
-                <div class="progress mt-3">
+                <div class="progress mb-3">
                     <div id="backupProgress" class="progress-bar progress-bar-striped progress-bar-animated" 
                          role="progressbar" style="width: 0%"></div>
                 </div>
+                <div id="backupStatus" class="text-center">正在备份...</div>
             </div>
         </div>
     </div>
@@ -241,12 +271,37 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error:', error));
     });
 
-    // 表单提交处理
+    // 添加开关控制逻辑
+    const localBackupSwitch = document.getElementById('localBackupSwitch');
+    const cloudBackupSwitch = document.getElementById('cloudBackupSwitch');
+    const localBackupPath = document.getElementById('localBackupPath');
+    const cloudBackupPath = document.getElementById('cloudBackupPath');
+    const backupPath = document.getElementById('backupPath');
+    const cloudPath = document.getElementById('cloudPath');
+
+    // 本地备份开关
+    localBackupSwitch.addEventListener('change', function() {
+        localBackupPath.style.display = this.checked ? 'block' : 'none';
+        backupPath.required = this.checked;
+        if (!this.checked) {
+            backupPath.value = ''; // 清空本地备份路径
+        }
+    });
+
+    // 云端备份开关
+    cloudBackupSwitch.addEventListener('change', function() {
+        cloudBackupPath.style.display = this.checked ? 'block' : 'none';
+        cloudPath.required = this.checked;
+        if (!this.checked) {
+            cloudPath.value = ''; // 清空云端备份路径
+        }
+    });
+
+    // 更新表单提交处理
     document.getElementById('backupForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // 获取选中的文件
-        const selectedFiles = Array.from(fileCheckboxes)
+        const selectedFiles = Array.from(document.querySelectorAll('.file-checkbox'))
             .filter(cb => cb.checked)
             .map(cb => cb.value);
 
@@ -255,21 +310,37 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const backupPath = document.getElementById('backupPath').value;
-        if (!backupPath) {
-            alert('请选择备份位置');
+        // 验证至少选择了一种备份方式
+        const isLocalBackup = localBackupSwitch.checked;
+        const isCloudBackup = cloudBackupSwitch.checked;
+
+        if (!isLocalBackup && !isCloudBackup) {
+            alert('请至少选择一种备份方式');
+            return;
+        }
+
+        // 验证备份路径
+        if (isLocalBackup && !backupPath.value.trim()) {
+            alert('请选择本地备份位置');
+            return;
+        }
+
+        if (isCloudBackup && !cloudPath.value.trim()) {
+            alert('请输入云端存储路径');
             return;
         }
 
         // 显示进度模态框
         const progressModal = new bootstrap.Modal(document.getElementById('backupProgressModal'));
         progressModal.show();
-
-        // 更新进度条和状态
+        
+        // 初始化进度条
         const progressBar = document.getElementById('backupProgress');
         const statusText = document.getElementById('backupStatus');
-        let progress = 0;
-
+        progressBar.style.width = '0%';
+        progressBar.classList.remove('bg-danger');
+        statusText.textContent = '正在备份...';
+        
         // 发送备份请求
         fetch('/perform_backup', {
             method: 'POST',
@@ -278,13 +349,18 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify({
                 selected_files: selectedFiles,
-                backup_path: backupPath
+                is_local: isLocalBackup,
+                backup_path: isLocalBackup ? backupPath.value : null,
+                is_cloud: isCloudBackup,
+                cloud_provider: document.getElementById('cloudProvider').value,
+                cloud_path: isCloudBackup ? cloudPath.value : null
             })
         })
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success' || data.status === 'partial') {
                 // 快速完成进度条
+                let progress = 0;
                 const interval = setInterval(() => {
                     progress += 5;
                     progressBar.style.width = `${progress}%`;

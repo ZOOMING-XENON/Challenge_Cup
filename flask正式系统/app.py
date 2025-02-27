@@ -14,6 +14,7 @@ from cryptography.fernet import Fernet
 import tkinter as tk
 from tkinter import filedialog
 import atexit
+from cloud_storage import CloudStorage
 
 # 模块说明save_file(uploaded_file, upload_folder):
 # render_template是方便路由返回页面的
@@ -641,23 +642,30 @@ def perform_backup():
         data = request.get_json()
         selected_files = data.get('selected_files', [])
         backup_path = data.get('backup_path')
+        
+        # 获取云端备份相关参数
+        is_cloud = data.get('is_cloud', False)
+        cloud_provider = data.get('cloud_provider')
+        cloud_path = data.get('cloud_path')
 
         if not selected_files:
             raise ValueError("未选择任何文件")
 
-        if not backup_path:
+        if not backup_path and not (is_cloud and cloud_path):
             raise ValueError("未选择备份位置")
 
-        # 验证并规范化备份路径
-        backup_path = os.path.abspath(backup_path)
-        backup_dir = Path(backup_path)
+        # 执行本地备份
+        if backup_path:
+            # 验证并规范化备份路径
+            backup_path = os.path.abspath(backup_path)
+            backup_dir = Path(backup_path)
 
-        # 验证路径是否合法且可写
-        try:
-            if not backup_dir.exists():
-                backup_dir.mkdir(parents=True, exist_ok=True)
-        except Exception as e:
-            raise ValueError(f"备份路径无效或没有写入权限: {str(e)}")
+            # 验证路径是否合法且可写
+            try:
+                if not backup_dir.exists():
+                    backup_dir.mkdir(parents=True, exist_ok=True)
+            except Exception as e:
+                raise ValueError(f"备份路径无效或没有写入权限: {str(e)}")
 
         # 执行文件备份
         successful_files = []
@@ -667,22 +675,41 @@ def perform_backup():
         for file in selected_files:
             try:
                 source_path = os.path.join(app.config['UPLOAD_FOLDER'], file)
-                target_path = os.path.join(backup_path, file)
+                
+                # 本地备份
+                if backup_path:
+                    target_path = os.path.join(backup_path, file)
+                    # 复制文件
+                    shutil.copy2(source_path, target_path)
 
-                # 复制文件
-                shutil.copy2(source_path, target_path)
+                    # 记录文件信息
+                    file_stat = os.stat(target_path)
+                    backed_up_files.append({
+                        'name': file,
+                        'size': file_stat.st_size,
+                        'modified_time': datetime.fromtimestamp(file_stat.st_mtime).strftime("%Y-%m-%d %H:%M:%S"),
+                        'source_path': source_path,
+                        'target_path': target_path
+                    })
 
-                # 记录文件信息
-                file_stat = os.stat(target_path)
-                backed_up_files.append({
-                    'name': file,
-                    'size': file_stat.st_size,
-                    'modified_time': datetime.fromtimestamp(file_stat.st_mtime).strftime("%Y-%m-%d %H:%M:%S"),
-                    'source_path': source_path,
-                    'target_path': target_path
-                })
+                # 云端备份
+                if is_cloud and cloud_provider and cloud_path:
+                    try:
+                        cloud_file_path = os.path.join(cloud_path, file)
+                        CloudStorage.upload_to_cloud(source_path, cloud_file_path, cloud_provider)
+                        backed_up_files.append({
+                            'name': file,
+                            'size': os.path.getsize(source_path),
+                            'modified_time': datetime.fromtimestamp(os.path.getmtime(source_path)).strftime("%Y-%m-%d %H:%M:%S"),
+                            'source_path': source_path,
+                            'target_path': f"{cloud_provider}://{cloud_file_path}"
+                        })
+                    except Exception as e:
+                        failed_files.append({'file': file, 'error': f"云端备份失败: {str(e)}"})
+                        continue
 
-                successful_files.append(file)
+                if file not in successful_files:
+                    successful_files.append(file)
             except Exception as e:
                 failed_files.append({'file': file, 'error': str(e)})
 
@@ -694,7 +721,11 @@ def perform_backup():
             'id': len(backup_records) + 1,
             'backup_time': current_time,
             'status': status,
-            'path': backup_path,
+            'path': backup_path if backup_path else "云端存储",
+            'cloud_info': {
+                'provider': cloud_provider,
+                'path': cloud_path
+            } if is_cloud else None,
             'source_path': app.config['UPLOAD_FOLDER'],
             'files': backed_up_files,  # 添加文件详情
             'failed_files': failed_files  # 添加失败文件信息
@@ -707,7 +738,11 @@ def perform_backup():
             'message': '备份完成' if status == 'success' else f'部分文件备份失败 ({len(failed_files)} 个错误)',
             'successful_files': successful_files,
             'failed_files': failed_files,
-            'backup_path': backup_path
+            'backup_path': backup_path,
+            'cloud_backup': {
+                'provider': cloud_provider,
+                'path': cloud_path
+            } if is_cloud else None
         })
 
     except Exception as e:
