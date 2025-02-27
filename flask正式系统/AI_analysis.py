@@ -1,5 +1,5 @@
 def AI_analysis():
-    from Deepseek import Deepseek
+    from DeepseekAPI import Deepseek
     from MachineLearning import MachineLearning
     import copy
     dict2 = MachineLearning()
