@@ -7,10 +7,10 @@ CLOUD_STORAGE_CONFIG = {
         'bucket_name': '你的Bucket名称'
     },
     'qcloud': {
-        'secret_id': 'AKIDKcjjX9aBmCTZWHsHUUN4Zrwrb9XlpjT1',
-        'secret_key': 'RgleNwHQN9j6HKEIOQQL9lYEi0GTduHV',
-        'region': 'ap-guangzhou',
-        'bucket_name': 'mengshupei-1345234371'
+        'secret_id': '',
+        'secret_key': '',
+        'region': '',
+        'bucket_name': ''
     },
     'aws': {
         'aws_access_key_id': '你的AWS访问密钥ID',
