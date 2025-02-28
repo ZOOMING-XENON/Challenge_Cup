@@ -5,6 +5,10 @@ from wtforms import StringField, SubmitField, FileField
 from werkzeug.utils import secure_filename
 import secrets, os
 from file_upload import CommandForm, save_file,allowed_file # 导入文件上传模块
+import json
+from pathlib import Path
+import logging
+
 #模块说明save_file(uploaded_file, upload_folder):
 #render_template是方便路由返回页面的
 # 导入一个flask对象
@@ -329,7 +333,73 @@ def download_file(filename):
 @app.route('/outgoing_file_records')
 def out_going_file_records():
     """文件外发记录"""
-    return render_template('outgoing_file_records.html')
+    try:
+        # 读取记录文件
+        records_dir = Path(__file__).parent / 'outgoing_file_records'
+        today = datetime.now().strftime("%Y%m%d")
+        records_file = records_dir / f"violation_records_{today}.json"
+        
+        # 初始化数据
+        records = []
+        filename_violations = 0
+        content_violations = 0
+        
+        # 如果记录文件存在，读取数据
+        if records_file.exists():
+            with open(records_file, 'r', encoding='utf-8') as f:
+                records = json.load(f)
+                
+            # 统计违规类型
+            for record in records:
+                if record['violation_type'] == 'filename':
+                    filename_violations += 1
+                else:
+                    content_violations += 1
+        
+        # 计算拦截率
+        total_violations = filename_violations + content_violations
+        block_rate = 100 if total_violations > 0 else 0
+        
+        # 获取最近7天的趋势数据
+        dates = []
+        filename_trend = []
+        content_trend = []
+        
+        for i in range(6, -1, -1):
+            date = (datetime.now() - timedelta(days=i)).strftime("%Y%m%d")
+            file_path = records_dir / f"violation_records_{date}.json"
+            
+            dates.append((datetime.now() - timedelta(days=i)).strftime("%m-%d"))
+            if file_path.exists():
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    day_records = json.load(f)
+                filename_trend.append(sum(1 for r in day_records if r['violation_type'] == 'filename'))
+                content_trend.append(sum(1 for r in day_records if r['violation_type'] == 'content'))
+            else:
+                filename_trend.append(0)
+                content_trend.append(0)
+        
+        return render_template('outgoing_file_records.html',
+                             records=records,
+                             today_count=total_violations,
+                             filename_violations=filename_violations,
+                             content_violations=content_violations,
+                             block_rate=block_rate,
+                             dates=dates,
+                             filename_trend=filename_trend,
+                             content_trend=content_trend)
+                             
+    except Exception as e:
+        logging.error(f"加载文件外发记录失败: {e}")
+        return render_template('outgoing_file_records.html',
+                             records=[],
+                             today_count=0,
+                             filename_violations=0,
+                             content_violations=0,
+                             block_rate=0,
+                             dates=[],
+                             filename_trend=[],
+                             content_trend=[])
 
 @app.route('/file_operation_records')
 def file_operation_records():

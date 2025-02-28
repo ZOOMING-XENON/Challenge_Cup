@@ -1,10 +1,261 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block title %}文件外发记录 - 企业安全管理系统{% endblock %}
+
+{% block extra_style %}
+.stats-card {
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+}
+
+.violation-filename { color: #dc3545; }
+.violation-content { color: #fd7e14; }
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0,0,0,.05);
+    cursor: pointer;
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: none;
+    padding: 1rem;
+}
+
+.btn-primary {
+    border-radius: 8px;
+}
+{% endblock %}
+
+{% block content %}
+<!-- 侧边栏 -->
+<div class="sidebar">
+    <div class="system-title">
+        <i class="fas fa-shield-alt"></i>
+        企业安全管理系统
+    </div>
+    <nav class="nav flex-column">
+        <a class="nav-link" href="/overview"><i class="fas fa-tachometer-alt"></i> 概览</a>
+        <a class="nav-link" href="/admin"><i class="fas fa-users"></i> 员工管理</a>
+        <a class="nav-link" href="/monitor"><i class="fas fa-globe"></i> 上网审计管控</a>
+        <a class="nav-link" href="/upload"><i class="fas fa-upload"></i> 文件上传</a>
+        <a class="nav-link" href="/upload_list"><i class="fas fa-list"></i> 上传文件列表</a>
+        <a class="nav-link" href="#"><i class="fas fa-database"></i> 数据备份与监测</a>
+        <a class="nav-link" href="#"><i class="fas fa-chart-line"></i> 行为分析</a>
+        <a class="nav-link" href="/ransomware"><i class="fas fa-lock"></i> 勒索防护</a>
+        <a class="nav-link" href="#"><i class="fas fa-cog"></i> 软件管理</a>
+        <a class="nav-link active" href="/outgoing_file_records"><i class="fas fa-file-export"></i> 文件外发记录</a>
+        <a class="nav-link" href="/file_operation_records"><i class="fas fa-file-alt"></i> 文件操作记录</a>
+    </nav>
+</div>
+
+<!-- 顶部导航栏 -->
+<div class="top-nav">
+    <div class="d-flex align-items-center">
+        <i class="fas fa-bars me-3"></i>
+        <span>文件外发记录</span>
+    </div>
+    <div class="d-flex align-items-center">
+        <span class="me-3"><i class="fas fa-bell"></i></span>
+        <span class="me-3"><i class="fas fa-user"></i> 管理员</span>
+        <a href="/logout" class="btn btn-outline-secondary btn-sm">退出</a>
+    </div>
+</div>
+
+<!-- 主要内容区域 -->
+<div class="main-content">
+    <!-- 统计卡片 -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card stats-card bg-primary bg-gradient text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="card-title mb-0">今日拦截</h6>
+                            <h2 class="my-2">{{ today_count }}</h2>
+                        </div>
+                        <i class="fas fa-shield-alt fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stats-card bg-warning bg-gradient text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="card-title mb-0">文件名违规</h6>
+                            <h2 class="my-2">{{ filename_violations }}</h2>
+                        </div>
+                        <i class="fas fa-file-earmark-x fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stats-card bg-danger bg-gradient text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="card-title mb-0">内容违规</h6>
+                            <h2 class="my-2">{{ content_violations }}</h2>
+                        </div>
+                        <i class="fas fa-file-earmark-text fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stats-card bg-success bg-gradient text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="card-title mb-0">成功拦截率</h6>
+                            <h2 class="my-2">{{ block_rate }}%</h2>
+                        </div>
+                        <i class="fas fa-chart-line fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 违规趋势图 -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="card-title mb-0">违规趋势</h5>
+        </div>
+        <div class="card-body">
+            <canvas id="violationTrend" height="100"></canvas>
+        </div>
+    </div>
+
+    <!-- 违规记录表格 -->
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">详细记录</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>时间</th>
+                            <th>文件名</th>
+                            <th>大小</th>
+                            <th>类型</th>
+                            <th>违规类型</th>
+                            <th>备份位置</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in records %}
+                        <tr>
+                            <td>{{ record.timestamp }}</td>
+                            <td class="{% if record.violation_type == 'filename' %}violation-filename{% endif %}">
+                                {{ record.filename }}
+                            </td>
+                            <td>{{ record.size }}</td>
+                            <td>{{ record.type }}</td>
+                            <td>
+                                {% if record.violation_type == 'filename' %}
+                                    <span class="badge bg-warning">文件名违规</span>
+                                {% else %}
+                                    <span class="badge bg-danger">内容违规</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ record.backup_path }}</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="restoreFile('{{ record.backup_path }}')">
+                                    <i class="fas fa-arrow-counterclockwise"></i> 恢复
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // 绘制违规趋势图
+    const ctx = document.getElementById('violationTrend').getContext('2d');
+    const chartData = {
+        labels: JSON.parse('{{ dates|tojson|safe }}'),
+        datasets: [{
+            label: '文件名违规',
+            data: JSON.parse('{{ filename_trend|tojson|safe }}'),
+            borderColor: '#ffc107',
+            backgroundColor: 'rgba(255, 193, 7, 0.1)',
+            tension: 0.4,
+            fill: true
+        }, {
+            label: '内容违规',
+            data: JSON.parse('{{ content_trend|tojson|safe }}'),
+            borderColor: '#dc3545',
+            backgroundColor: 'rgba(220, 53, 69, 0.1)',
+            tension: 0.4,
+            fill: true
+        }]
+    };
+
+    new Chart(ctx, {
+        type: 'line',
+        data: chartData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        drawBorder: false
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+
+    // 恢复文件功能
+    function restoreFile(backupPath) {
+        if (confirm('确定要恢复此文件吗？')) {
+            fetch(`/restore_file?path=${encodeURIComponent(backupPath)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('文件恢复成功！');
+                        location.reload();
+                    } else {
+                        alert('文件恢复失败：' + data.error);
+                    }
+                });
+        }
+    }
+</script>
+{% endblock %}

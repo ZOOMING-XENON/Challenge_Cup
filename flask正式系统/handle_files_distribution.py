@@ -12,6 +12,7 @@ from PIL import Image
 import io
 import mimetypes
 import hashlib
+from datetime import datetime
 
 # 配置日志
 logging.basicConfig(
@@ -35,11 +36,10 @@ class FileMonitorHandler(FileSystemEventHandler):
         self.api_endpoint = "https://api.siliconflow.cn/v1/chat/completions"  # SiliconFlow API 端点
         self.api_key = "sk-mqpsbcvlkcreevemrcmmguauztcphrusyvdlxwfpmvrpkzwr"
         self.blocked_files = set()  # 用于记录已经被阻止的文件
+        self.processing_base_names = set()  # 用于记录正在处理的基础文件名
         
-        # 创建临时检测目录和备份目录
-        self.temp_dir = Path(__file__).parent / 'temp_checking'
+        # 删除临时检测目录，只保留备份目录
         self.backup_dir = Path(__file__).parent / 'blocked_files'
-        self.temp_dir.mkdir(exist_ok=True)
         self.backup_dir.mkdir(exist_ok=True)
         
         # 添加本地敏感词列表
@@ -49,6 +49,25 @@ class FileMonitorHandler(FileSystemEventHandler):
             '内控', '未公开', '不得公开', '草稿', '初稿',
             'confidential', 'secret', 'internal', 'private', 'draft'
         }
+        
+        # 添加需要忽略的文件模式
+        self.ignore_patterns = {
+            '_t.dat',  # 微信临时数据文件
+            '_t.jpg',  # 微信临时图片文件
+            '_t.tmp',  # 临时文件
+            '.crdownload',  # 下载临时文件
+            '~',  # 临时文件
+            '._',  # 隐藏文件
+            '.temp',  # 临时文件
+            '.TMP',   # 临时文件
+        }
+        
+        # 修改记录目录名称
+        self.records_dir = Path(__file__).parent / 'outgoing_file_records'
+        self.records_dir.mkdir(exist_ok=True)
+        
+        # 违规文件记录
+        self.violation_records = []
 
     def _get_base_filename(self, filename):
         """获取文件的基础名称（去掉括号中的序号）"""
@@ -119,27 +138,51 @@ class FileMonitorHandler(FileSystemEventHandler):
             logging.error(f"检查文件名时出错: {e}")
             return True
 
+    def _add_violation_record(self, file_path, violation_type):
+        """记录违规文件信息"""
+        try:
+            record = {
+                'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                'filename': os.path.basename(file_path),
+                'size': self._format_size(os.path.getsize(file_path)),
+                'type': mimetypes.guess_type(file_path)[0] or 'unknown',
+                'violation_type': violation_type,  # 'filename' 或 'content'
+                'backup_path': str(self.backup_dir / os.path.basename(file_path))
+            }
+            
+            self.violation_records.append(record)
+            
+            # 保存记录到文件
+            date_str = datetime.now().strftime("%Y%m%d")
+            record_file = self.records_dir / f"violation_records_{date_str}.json"
+            
+            with open(record_file, 'w', encoding='utf-8') as f:
+                json.dump(self.violation_records, f, ensure_ascii=False, indent=2)
+                
+        except Exception as e:
+            logging.error(f"记录违规文件信息失败: {e}")
+
     def on_any_event(self, event):
         """捕获所有文件事件"""
         # 忽略目录事件和临时文件
         if (event.is_directory or 
-            event.src_path.endswith(('.tmp', '~', '.crdownload', '.blocked')) or
-            '_t.dat' in event.src_path or
+            any(pattern in event.src_path for pattern in self.ignore_patterns) or
             event.src_path in self.blocked_files):  # 忽略已经被阻止的文件
             return
             
         file_name = os.path.basename(event.src_path)
         
         # 忽略特定格式的临时文件
-        if (len(file_name) == 36 and file_name.endswith('_t.dat') or
+        if (len(file_name) == 32 and any(file_name.endswith(ext) for ext in ['_t.jpg', '_t.dat']) or  # 微信/QQ的临时文件（32位MD5）
             file_name.startswith('~') or
-            file_name.startswith('._')):
+            file_name.startswith('._') or
+            len(file_name) == 36):  # 36位的临时文件名
             return
             
         base_filename = self._get_base_filename(file_name)
         
-        # 如果文件基础名称已经记录过日志，直接跳过
-        if base_filename in self.logged_filenames:
+        # 如果基础文件名正在处理中，跳过
+        if base_filename in self.processing_base_names:
             return
             
         # 如果文件已经处理过，跳过
@@ -154,61 +197,45 @@ class FileMonitorHandler(FileSystemEventHandler):
         if event.event_type in ['created', 'modified']:
             try:
                 if "File" in event.src_path or "FileRecv" in event.src_path:
-                    # 标记文件正在处理
-                    self.processing_files.add(event.src_path)
+                    # 标记基础文件名正在处理
+                    self.processing_base_names.add(base_filename)
                     
-                    # 等待文件完全写入完成
-                    time.sleep(0.5)
-                    
-                    if not self._is_file_ready(event.src_path):
+                    try:
+                        # 标记文件正在处理
+                        self.processing_files.add(event.src_path)
+                        
+                        # 等待文件完全写入完成
+                        time.sleep(0.5)
+                        
+                        if not self._is_file_ready(event.src_path):
+                            self.processing_files.remove(event.src_path)
+                            return
+                        
+                        # 检查文件名
+                        if not self._check_filename(file_name):
+                            self._add_violation_record(event.src_path, 'filename')
+                            self._block_file_transfer(event.src_path)
+                            self.processing_files.remove(event.src_path)
+                            return
+                        
+                        self.logged_filenames.add(base_filename)
+                        
+                        # 检查文件内容
+                        if not self._check_file_content(event.src_path):
+                            self._add_violation_record(event.src_path, 'content')
+                            self._block_file_transfer(event.src_path)
+                        
+                        # 记录已处理
+                        self.processed_files.add(base_filename)
+                        if event.src_path in self.pending_files:
+                            del self.pending_files[event.src_path]
+                        
+                        # 移除处理中标记
                         self.processing_files.remove(event.src_path)
-                        return
-                    
-                    # 将文件移动到临时目录进行检测
-                    file_name = os.path.basename(event.src_path)
-                    temp_path = self.temp_dir / file_name
-                    
-                    # 如果临时目录已存在同名文件，添加时间戳
-                    if temp_path.exists():
-                        timestamp = time.strftime("%Y%m%d_%H%M%S")
-                        temp_path = self.temp_dir / f"{file_name}_{timestamp}"
-                    
-                    # 移动到临时目录
-                    os.rename(event.src_path, temp_path)
-                    
-                    # 创建占位文件
-                    with open(event.src_path, 'w') as f:
-                        f.write("文件正在检测中，请稍候...")
-                    
-                    # 检查文件名
-                    if not self._check_filename(file_name):
-                        logging.warning(f"\n文件名包含敏感词，阻止发送: {file_name}")
-                        self._block_file_transfer(str(temp_path), event.src_path)
-                        self.processing_files.remove(event.src_path)
-                        return
-                    
-                    self.logged_filenames.add(base_filename)
-                    
-                    # 检查文件内容
-                    if self._check_file_content(str(temp_path)):
-                        # 检测通过，恢复文件
-                        os.remove(event.src_path)  # 删除占位文件
-                        os.rename(temp_path, event.src_path)  # 恢复原文件
-                        logging.info(f"\n文件检测通过，允许发送:")
-                        logging.info(f"文件名: {file_name}")
-                        size = os.path.getsize(event.src_path)
-                        logging.info(f"大小: {self._format_size(size)}")
-                    else:
-                        logging.warning(f"\n发现违规文件，阻止发送: {file_name}")
-                        self._block_file_transfer(str(temp_path), event.src_path)
-                    
-                    # 记录已处理
-                    self.processed_files.add(base_filename)
-                    if event.src_path in self.pending_files:
-                        del self.pending_files[event.src_path]
-                    
-                    # 移除处理中标记
-                    self.processing_files.remove(event.src_path)
+                            
+                    finally:
+                        # 处理完成后移除标记
+                        self.processing_base_names.discard(base_filename)
                         
             except Exception as e:
                 logging.error(f"处理文件事件时出错: {e}")
@@ -398,14 +425,14 @@ class FileMonitorHandler(FileSystemEventHandler):
             logging.error(f"检查PDF内容时出错: {e}")
             return True
 
-    def _block_file_transfer(self, temp_path, original_path):
+    def _block_file_transfer(self, file_path):
         """阻止文件发送并保存备份"""
         try:
             # 将文件添加到已阻止列表
-            self.blocked_files.add(original_path)
+            self.blocked_files.add(file_path)
             
             # 生成备份文件路径
-            file_name = os.path.basename(temp_path)
+            file_name = os.path.basename(file_path)
             backup_path = self.backup_dir / file_name
             
             # 如果已存在同名文件，添加时间戳
@@ -413,23 +440,24 @@ class FileMonitorHandler(FileSystemEventHandler):
                 timestamp = time.strftime("%Y%m%d_%H%M%S")
                 backup_path = self.backup_dir / f"{file_name}_{timestamp}"
             
-            # 将临时文件移动到备份目录
-            os.rename(temp_path, backup_path)
+            # 复制文件到备份目录
+            import shutil
+            shutil.copy2(file_path, backup_path)
             
-            # 替换原文件为警告信息
-            with open(original_path, 'w') as f:
-                f.write("文件已被安全系统拦截")
+            # 清空原文件内容并写入警告信息
+            with open(file_path, 'w') as f:
+                f.write("文件已被安全系统拦截，可在blocked_files目录中找到原文件")
             
             # 设置替代文件为只读
-            os.chmod(original_path, 0o444)
+            os.chmod(file_path, 0o444)
             
             # 记录备份信息
-            logging.info(f"已阻止文件: {original_path}")
+            logging.info(f"已阻止文件: {file_path}")
             logging.info(f"原文件已备份至: {backup_path}")
             
         except Exception as e:
             logging.error(f"阻止文件发送失败: {e}")
-            self.blocked_files.discard(original_path)
+            self.blocked_files.discard(file_path)
 
     def restore_file(self, backup_path):
         """恢复被阻止的文件"""
