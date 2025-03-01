@@ -1,0 +1,28 @@
+[
+  {
+    "timestamp": "2025-03-01 19:58:30",
+    "event_type": "connected",
+    "device_info": {
+      "name": "USB Flash Disk USB Device",
+      "serial": "AA00000000000489",
+      "size": "29.43 GB",
+      "manufacturer": "(标准磁盘驱动器)",
+      "model": "USB Flash Disk USB Device",
+      "drive_letter": "G:",
+      "connection_time": "2025-03-01 19:58:30"
+    }
+  },
+  {
+    "timestamp": "2025-03-01 20:00:57",
+    "event_type": "disconnected",
+    "device_info": {
+      "name": "USB Flash Disk USB Device",
+      "serial": "AA00000000000489",
+      "size": "29.43 GB",
+      "manufacturer": "(标准磁盘驱动器)",
+      "model": "USB Flash Disk USB Device",
+      "drive_letter": "G:",
+      "connection_time": "2025-03-01 19:58:30"
+    }
+  }
+]
