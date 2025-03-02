@@ -9,6 +9,28 @@
     padding-top: 80px;
 }
 
+.traffic-card {
+    margin-bottom: 20px;
+}
+
+.traffic-header {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.traffic-body {
+    padding: 15px;
+}
+
+pre {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
 .monitor-card {
     margin-bottom: 20px;
     transition: transform 0.2s ease;
@@ -262,6 +284,25 @@
 <!-- 主要内容区域 -->
 <div class="main-content">
     <div class="row">
+        <!-- 代理客户端状态卡片 -->
+        <div class="col-12 mb-4">
+            <div class="card monitor-card">
+                <div class="card-body">
+                    <h5 class="monitor-title">
+                        <div>
+                            <i class="fas fa-network-wired me-2"></i>代理客户端状态
+                        </div>
+                        <span class="monitor-badge" id="proxyCount">
+                            <i class="fas fa-server me-1"></i>0 个活动代理
+                        </span>
+                    </h5>
+                    <div class="row" id="proxyList">
+                        <!-- 动态生成代理客户端卡片 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- 员工监控卡片列表 -->
         <div class="col-12">
             <div class="card monitor-card">
@@ -308,13 +349,13 @@ function updateMonitorData() {
             const computerList = document.getElementById('computerList');
             const countDisplay = document.getElementById('computerCount');
             const computers = data.computers || {};
-            
+
             // 更新员工数量
             const numComputers = Object.keys(computers).length;
             countDisplay.innerHTML = `
                 <i class="fas fa-users me-1"></i>${numComputers} 位员工
             `;
-            
+
             // 生成员工卡片
             computerList.innerHTML = Object.entries(computers).map(([computerId, computerInfo]) => `
                 <div class="col-md-6 col-lg-4 mb-4">
@@ -342,7 +383,7 @@ function updateMonitorData() {
                     </div>
                 </div>
             `).join('');
-            
+
             // 更新历史数据
             previousData = data;
 
@@ -357,22 +398,53 @@ function updateMonitorData() {
 function showComputerDetails(computerId) {
     const computerInfo = previousData.computers[computerId];
     const fileHistory = previousData.wechat_files_history[computerId] || {};
-    
+提    const domainData = previousData.high_risk_domains?.[computerId] || [];
+    // 确保即使computerInfo为空也能正确处理
+    const installedSoftware = computerInfo?.installed_software || [];
+
     const modal = document.getElementById('detailModal');
     const modalTitle = document.getElementById('modalTitle');
     const modalContent = document.getElementById('modalContent');
-    
+
     modalTitle.innerHTML = `<i class="fas fa-desktop me-2"></i>员工电脑详情 - ${computerId}`;
-    
+
     modalContent.innerHTML = `
         <div class="detail-sections">
             <div class="detail-section">
                 <h6><i class="fas fa-window-maximize me-2"></i>活动窗口</h6>
                 <div class="detail-item">
-                    <span>${computerInfo.active_window}</span>
+                    <span>${computerInfo?.active_window || '无活动窗口'}</span>
                 </div>
             </div>
-            
+
+            <div class="detail-section">
+                <h6><i class="fas fa-globe me-2"></i>域名监控</h6>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>域名</th>
+                                <th>访问时间</th>
+                                <th>风险等级</th>
+                                <th>分析结果</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${domainData.map(domain => `
+                                <tr>
+                                    <td>${domain.domain}</td>
+                                    <td>${domain.timestamp}</td>
+                                    <td>
+                                        <span class="badge bg-danger">高风险</span>
+                                    </td>
+                                    <td>${domain.analysis}</td>
+                                </tr>
+                            `).join('') || '<tr><td colspan="4" class="text-center">暂无域名访问记录</td></tr>'}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
             <div class="detail-section">
                 <h6><i class="fab fa-weixin me-2"></i>微信文件监控</h6>
                 <div class="table-responsive">
@@ -385,31 +457,35 @@ function showComputerDetails(computerId) {
                             </tr>
                         </thead>
                         <tbody>
-                            ${Object.entries(fileHistory).map(([filename, details]) => `
-                                <tr>
-                                    <td>${filename}</td>
-                                    <td>${details.first_seen}</td>
-                                    <td>${details.last_seen}</td>
-                                </tr>
-                            `).join('')}
+                            ${Object.entries(fileHistory).length > 0 ?
+                                Object.entries(fileHistory).map(([filename, details]) => `
+                                    <tr>
+                                        <td>${filename}</td>
+                                        <td>${details.first_seen}</td>
+                                        <td>${details.last_seen}</td>
+                                    </tr>
+                                `).join('') :
+                                '<tr><td colspan="3" class="text-center">暂无微信文件记录</td></tr>'}
                         </tbody>
                     </table>
                 </div>
             </div>
-            
+
             <div class="detail-section">
                 <h6><i class="fas fa-cube me-2"></i>已安装软件</h6>
                 <div class="detail-list">
-                    ${computerInfo.installed_software.map(software => `
-                        <div class="detail-item">
-                            <i class="fas fa-cube me-2"></i>${software}
-                        </div>
-                    `).join('')}
+                    ${installedSoftware.length > 0 ?
+                        installedSoftware.map(software => `
+                            <div class="detail-item">
+                                <i class="fas fa-cube me-2"></i>${software}
+                            </div>
+                        `).join('') :
+                        '<div class="detail-item text-center">暂无已安装软件信息</div>'}
                 </div>
             </div>
         </div>
     `;
-    
+
     modal.style.display = 'block';
 }
 
@@ -431,4 +507,4 @@ updateMonitorData();
 // 每3秒更新一次数据
 setInterval(updateMonitorData, 3000);
 </script>
-{% endblock %} 
+{% endblock %}

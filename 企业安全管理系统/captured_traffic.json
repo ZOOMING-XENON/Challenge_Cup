@@ -1,0 +1,26 @@
+[
+  {
+    "type": "request",
+    "domain": "org.cn",
+    "url": "https://www.secretflow.org.cn/en/docs/spu/main/tutorials/spu_inside",
+    "access_count": 4
+  },
+  {
+    "type": "request",
+    "domain": "alipay.com",
+    "url": "https://render.alipay.com/p/yuyan/secretflow-site-data_announcement-data/zh_CN.json",
+    "access_count": 8
+  },
+  {
+    "type": "request",
+    "domain": "npmmirror.com",
+    "url": "https://registry.npmmirror.com/@secretflow/x-spu/gh-main/files/dist/index.js",
+    "access_count": 656
+  },
+  {
+    "type": "request",
+    "domain": "immersivetranslate.com",
+    "url": "https://config.immersivetranslate.com/default_config.json",
+    "access_count": 2
+  }
+]

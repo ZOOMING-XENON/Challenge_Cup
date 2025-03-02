@@ -1,0 +1,30 @@
+[
+    {
+        "url": "org.cn",
+        "score": 0.3,
+        "function": "technical documentation",
+        "risk": "frequent visits may indicate deep technical engagement",
+        "access_count": 4
+    },
+    {
+        "url": "alipay.com",
+        "score": 0.2,
+        "function": "payment processing",
+        "risk": "frequent visits but secure",
+        "access_count": 8
+    },
+    {
+        "url": "npmmirror.com",
+        "score": 0.3,
+        "function": "accessing npm packages",
+        "risk": "frequent visits but generally safe",
+        "access_count": 656
+    },
+    {
+        "url": "immersivetranslate.com",
+        "score": 0.3,
+        "function": "language translation tool",
+        "risk": "frequent access may indicate overuse",
+        "access_count": 2
+    }
+]

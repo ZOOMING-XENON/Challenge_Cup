@@ -215,9 +215,7 @@ def get_latest_data():
         "wechat_files_history": wechat_files_history
     })
 
-@app.route('/monitor')
-def monitor():
-    return render_template('monitor.html')
+
 
 
 
@@ -277,10 +275,6 @@ def upload_file():
     uploaded_files_list = os.listdir(app.config['UPLOAD_FOLDER'])  # 获取上传目录中的所有文件
     return render_template('upload.html', form=form, uploaded_files_list=uploaded_files_list)  # 渲染上传页面，并传递表单和文件列表
 
-@app.route('/success')
-def success():
-    """上传成功的路由"""
-    return "文件上传成功！"  # 返回成功消息
 
 @app.route('/upload_list')
 def upload_list():
@@ -326,57 +320,49 @@ def download_file(filename):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+
+
+
+
+# 上网审计部分：方哲西
+
+
+@app.route('/monitor')
+def monitor():
+    try:
+        # 读取 analyzed_data.json
+        if os.path.exists('analyzed_data.json'):
+            with open('analyzed_data.json', 'r', encoding='utf-8') as f:
+                analyzed_data = json.load(f)
+        else:
+            analyzed_data = []
+
+        # 筛选高风险域名
+        high_risk_domains = [item for item in analyzed_data if item.get("score", 0) > 0.5]
+
+    except (FileNotFoundError, json.JSONDecodeError, Exception) as e:
+        print(f"Error loading analyzed data: {str(e)}")
+        analyzed_data = []
+        high_risk_domains = []
+
+    # 提取所有电脑的监控数据
+    monitor_data = []
+    for computer_id, data in computer_data.items():
+        monitor_data.append({
+            "computer_id": computer_id,
+            "active_window": data.get("active_window", "无活动窗口"),
+            "wechat_files": data.get("wechat_files", []),
+            "installed_software": data.get("installed_software", []),
+            "wechat_files_history": wechat_files_history.get(computer_id, {})
+        })
+
+    return render_template('monitor.html', analyzed_data=analyzed_data, high_risk_domains=high_risk_domains,
+                           monitor_data=monitor_data)
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')  # 添加 host='0.0.0.0' 允许外部访问
 
 
-'''@app.route('/uploads/<filename>')
-def uploaded_file(filename):
-    """提供已上传文件的下载链接"""
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)  # 从指定目录发送文件，允许用户下载
-
-
-@app.route('/report', methods=['POST'])
-def handle_report():
-    """接收代理的状态报告"""
-    data = request.json
-    agent_id = data["agent_id"]
-    tasks[agent_id]["status"] = data["status"]
-    return jsonify(success=True)
-
-@app.route('/get_task')
-def get_task():
-    """代理请求任务"""
-    agent_id = request.args.get("agent_id")
-    if agent_id in tasks:
-        return jsonify({"action": "install", "command": tasks[agent_id]["command"]})
-    else:
-        return jsonify({"action": "wait"})
-
-@app.route('/get_exe_list')
-def get_exe_list():
-    """获取上传文件夹中的EXE文件列表"""
-    exe_files = []
-    shared_folder = app.config['UPLOAD_FOLDER']#之前就配置好的上传路径
-    for filename in os.listdir(shared_folder):
-        if filename.endswith('.exe'):
-            exe_files.append(filename)
-    return jsonify(exe_files)
-
-@app.route('/deploy', methods=['POST'])
-def handle_deploy():
-    files = request.form.getlist('files')  # 前端传入的EXE文件名列表
-    ips = request.form.get('ips').split(',')  # 目标机器IP列表
-
-    for file in files:
-        install_command = f"\\\\{MANAGER_IP}\\shared\\{file} /S"
-        for ip in ips:
-            agent_id = f"Machine-{ip}"
-            tasks[agent_id] = {
-                "command": install_command,
-                "status": "pending"
-            }
-    return jsonify(success=True)
-
-
-'''
