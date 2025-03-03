@@ -56,18 +56,18 @@ class AuditDatabase:
         self.lock = Lock()
         self._init_db()
         logger.debug("数据库初始化完成")
-
+        
     def _init_db(self):
         with self.conn:
             self.conn.execute('''CREATE TABLE IF NOT EXISTS audit_logs
                 (id INTEGER PRIMARY KEY AUTOINCREMENT,
-                 timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-                 user TEXT,
-                 role TEXT,
-                 event_type TEXT,
-                 path TEXT,
-                 file_hash TEXT,
-                 risk_reasons TEXT)''')
+                timestamp DATETIME DEFAULT (datetime('now', 'localtime')),
+                user TEXT,
+                role TEXT,
+                event_type TEXT,
+                path TEXT,
+                file_hash TEXT,
+                risk_reasons TEXT)''')
             self.conn.execute('CREATE INDEX IF NOT EXISTS idx_path ON audit_logs(path)')
             self.conn.execute('CREATE INDEX IF NOT EXISTS idx_user ON audit_logs(user)')
             self.conn.execute('CREATE INDEX IF NOT EXISTS idx_timestamp ON audit_logs(timestamp)')
@@ -198,25 +198,35 @@ class EnhancedFileAuditor(FileSystemEventHandler):
 
 # Flask应用
 app = Flask(__name__, static_folder='static', static_url_path='/static')
-
 @app.route('/api/audit-data')
 def get_audit_data():
     """提供审计数据的API接口"""
     user_filter = request.args.get('user', default=None)
     time_range = request.args.get('time_range', default='24h')
+
+    # 转换时间范围参数
+    if time_range.endswith('h'):
+        hours = time_range[:-1]
+        sql_modifier = f"-{hours} hours"
+    elif time_range.endswith('d'):
+        days = time_range[:-1]
+        sql_modifier = f"-{days} days"
+    else:
+        sql_modifier = "-24 hours"
     
     try:
         conn = sqlite3.connect('audit.db')
+        # 修正SQL时间参数顺序
         base_query = '''
             SELECT 
-                strftime('%Y-%m-%d %H:%M', timestamp) as time,
+                strftime('%Y-%m-%d %H:%M', timestamp, 'localtime') as time,
                 user,
                 event_type,
                 COUNT(*) as count
             FROM audit_logs
-            WHERE timestamp >= datetime('now', ?)
+            WHERE timestamp >= datetime('now', ?, 'localtime')
         '''
-        params = [f'-{time_range}']
+        params = [sql_modifier]
         
         if user_filter:
             base_query += ' AND user = ?'
@@ -227,19 +237,31 @@ def get_audit_data():
             ORDER BY time DESC
         '''
         
+        logger.debug(f"执行SQL: {base_query} 参数: {params}")
         df = pd.read_sql(base_query, conn, params=params)
-        return jsonify({
-            'timeline': df.pivot_table(
+        logger.debug(f"查询结果样例:\n{df.head(3).to_string()}")
+        
+        if not df.empty:
+            # 生成透视表
+            pivot_df = df.pivot_table(
                 index='time',
                 columns=['user', 'event_type'],
                 values='count',
                 fill_value=0
-            ).to_dict(),
+            )
+            # 关键修复：将多级列名转换为字符串
+            pivot_df.columns = [f"{user},{event_type}" for user, event_type in pivot_df.columns]
+            timeline_data = pivot_df.to_dict(orient='index')
+        else:
+            timeline_data = {}
+        
+        return jsonify({
+            'timeline': timeline_data,
             'users': df['user'].unique().tolist(),
             'update_time': pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')
         })
     except Exception as e:
-        logger.error(f"API请求失败: {str(e)}")
+        logger.error(f"API请求失败: {str(e)}", exc_info=True)
         return jsonify({"error": "数据获取失败"}), 500
     finally:
         conn.close()
@@ -412,10 +434,11 @@ DASHBOARD_TEMPLATE = '''
                         x: {
                             type: 'time',
                             time: { 
-                                unit: 'hour',
+                                parser: 'yyyy-MM-dd HH:mm',  // 关键修复
                                 tooltipFormat: 'MM-dd HH:mm',
+                                unit: 'hour',
                                 displayFormats: {
-                                    hour: 'MM-dd HH:mm'
+              hour: 'MM-dd HH:mm'
                                 }
                             },
                             grid: { display: false },
@@ -492,34 +515,45 @@ DASHBOARD_TEMPLATE = '''
             updatePieChart(timelineData);
         }
 
-        function updateTimelineChart(timelineData) {
-            const datasets = [];
-            const userEventMap = new Map();
+function updateTimelineChart(timelineData) {
+  const userEventMap = new Map();
 
-            // 数据处理逻辑
-            Object.entries(timelineData).forEach(([time, events]) => {
-                Object.entries(events).forEach(([key, count]) => {
-                    const [user, eventType] = key.split(',');
-                    const seriesKey = `${user}_${eventType}`;
-                    
-                    if (!userEventMap.has(seriesKey)) {
-                        userEventMap.set(seriesKey, {
-                            label: `${user} - ${eventType}`,
-                            data: [],
-                            borderColor: colors[eventType],
-                            backgroundColor: `${colors[eventType]}20`,
-                            borderWidth: 2,
-                            tension: 0.3,
-                            pointRadius: 3
-                        });
-                    }
-                    userEventMap.get(seriesKey).data.push({ x: time, y: count });
-                });
-            });
+  // 清空现有数据
+  timelineChart.data.datasets = [];
 
-            timelineChart.data.datasets = Array.from(userEventMap.values());
-            timelineChart.update();
-        }
+  // 处理空数据
+  if (!timelineData || Object.keys(timelineData).length === 0) {
+    console.log('无数据可用');
+    timelineChart.update();
+    return;
+  }
+
+  // 处理数据
+  Object.entries(timelineData).forEach(([timeStr, events]) => {
+    const time = luxon.DateTime.fromFormat(timeStr, 'yyyy-MM-dd HH:mm');
+    
+    Object.entries(events).forEach(([key, count]) => {
+      const [user, eventType] = key.split(',');
+      const seriesKey = `${user}_${eventType}`;
+
+      if (!userEventMap.has(seriesKey)) {
+        userEventMap.set(seriesKey, {
+          label: `${user} - ${eventType}`,
+          data: [],
+          borderColor: colors[eventType] || '#4361ee',
+          backgroundColor: `${colors[eventType]}20` || '#4361ee20',
+          borderWidth: 2,
+          tension: 0.3,
+          pointRadius: 3
+        });
+      }
+      userEventMap.get(seriesKey).data.push({ x: time, y: count });
+    });
+  });
+
+  timelineChart.data.datasets = Array.from(userEventMap.values());
+  timelineChart.update();
+}
 
         function updatePieChart(timelineData) {
             const userCounts = {};

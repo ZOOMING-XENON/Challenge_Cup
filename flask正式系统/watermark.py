@@ -505,11 +505,11 @@ class SecurityWatermark(QMainWindow):
         self.angle = -20
         self.opacity = 0.85  # 注意：这是动画目标值，不是实际窗口属性
         self.spacing = 280
-
+        
         self.setWindowOpacity(0.0)  # 初始完全透明
         if SecurityConfig.FORCE_WATERMARK:
             self.setWindowOpacity(0.85)
-       
+
         # 临时调试样式（将在延迟后清除）
         self.setStyleSheet("background: red; border: 2px solid blue;")
 
@@ -711,6 +711,7 @@ class SecurityWatermark(QMainWindow):
                 self.update(),
                 QApplication.processEvents()
             ])
+
     def update_tray_icon(self):
         """更新托盘图标"""
         icon = QStyle.SP_DialogYesButton if self.active else QStyle.SP_DialogNoButton

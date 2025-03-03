@@ -351,8 +351,11 @@ class DetectorThread(QThread):
         kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
         sharpened = cv2.filter2D(img, -1, kernel)
         
+        # 转换为BGR格式（移除Alpha通道）
+        bgr_img = cv2.cvtColor(sharpened, cv2.COLOR_BGRA2BGR)
+        
         # 对比度增强
-        lab = cv2.cvtColor(sharpened, cv2.COLOR_BGRA2LAB)
+        lab = cv2.cvtColor(bgr_img, cv2.COLOR_BGR2LAB)
         l, a, b = cv2.split(lab)
         clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8,8))
         cl = clahe.apply(l)
@@ -362,8 +365,8 @@ class DetectorThread(QThread):
         # 自适应阈值
         gray = cv2.cvtColor(enhanced, cv2.COLOR_BGR2GRAY)
         return cv2.adaptiveThreshold(gray, 255, 
-                                   cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-                                   cv2.THRESH_BINARY, 11, 2)
+                                cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                                cv2.THRESH_BINARY, 11, 2)
 
     def _check_paths(self, current_path):
         """路径检测（增强版）"""
@@ -478,14 +481,56 @@ class SecurityWatermark(QMainWindow):
 
     def init_ui(self):
         """界面初始化"""
-        screen = QApplication.primaryScreen().geometry()
-        self.setGeometry(0, 0, screen.width(), screen.height())
-        self.setWindowOpacity(0.0)
+        # 获取屏幕信息
+        screen = QApplication.primaryScreen()
+        screen_geo = screen.geometry()
+        print(f"[屏幕信息] 实际分辨率: {screen_geo.width()}x{screen_geo.height()}")
+
+        # 初始窗口设置
+        self.setGeometry(0, 0, screen_geo.width(), screen_geo.height())
+        self.setFixedSize(screen_geo.width(), screen_geo.height())  # 固定窗口尺寸
+        
+        # 根据配置设置初始透明度
+        initial_opacity = 0.85 if SecurityConfig.FORCE_WATERMARK else 0.0
+        self.setWindowOpacity(initial_opacity)  # 立即设置初始值
+        
+        # 调试信息
+        print(f"[窗口初始化] 初始不透明度: {self.windowOpacity()}")
+        
+        # 字体设置
         self.font = QFont('微软雅黑', 28)
         self.font.setBold(True)
+        
+        # 水印参数
         self.angle = -20
-        self.opacity = 0.85
+        self.opacity = 0.85  # 注意：这是动画目标值，不是实际窗口属性
         self.spacing = 280
+
+        # 延迟设置保障（关键修改）
+        QTimer.singleShot(50, lambda: [
+            self.showFullScreen(),
+            self._force_opacity(),  # 调用新增强制设置方法
+            self.setStyleSheet("background: transparent;")  # 恢复透明背景
+        ])
+
+        # 临时调试样式（将在延迟后清除）
+        self.setStyleSheet("background: red; border: 2px solid blue;")
+
+    def showEvent(self, event):
+        """窗口显示事件处理"""
+        super().showEvent(event)
+        if SecurityConfig.FORCE_WATERMARK:
+            # 二次保障设置
+            QTimer.singleShot(100, self._force_opacity)
+            print("[窗口事件] 全屏显示完成")
+
+    def _force_opacity(self):
+        """新增方法：强制设置透明度"""
+        if SecurityConfig.FORCE_WATERMARK:
+            self.setWindowOpacity(0.85)
+            self.update()
+            print(f"[强制设置] 当前透明度: {self.windowOpacity()}")
+    
 
     def init_window_properties(self):
         """窗口属性设置"""
@@ -621,12 +666,27 @@ class SecurityWatermark(QMainWindow):
             self.update_tray_icon()
 
     def toggle_watermark(self, show):
-        """切换水印显示"""
+        if SecurityConfig.FORCE_WATERMARK:
+            self.setWindowOpacity(0.85)
+            self.update()  # 强制重绘
+            return
+
         anim = QPropertyAnimation(self, b"windowOpacity")
         anim.setDuration(SecurityConfig.FADE_DURATION)
         anim.setStartValue(self.windowOpacity())
         anim.setEndValue(self.opacity if show else 0.0)
+        
+        # 新增动画更新回调
+        anim.valueChanged.connect(lambda: self.update())
+        anim.finished.connect(lambda: self.update())
         anim.start()
+
+    def handle_detection(self, need_activate):
+        if need_activate != self.active:
+            self.active = need_activate
+            self.toggle_watermark(need_activate)
+            self.update()  # 状态变化后立即刷新
+            self.update_tray_icon()
 
     def update_tray_icon(self):
         """更新托盘图标"""
@@ -635,6 +695,7 @@ class SecurityWatermark(QMainWindow):
 
     def paintEvent(self, event):
         """绘制水印（兼容性增强版）"""
+        print(f"[绘制状态] Active: {self.active}, Opacity: {self.windowOpacity()}")
         if self.active or SecurityConfig.FORCE_WATERMARK:
             painter = None
             try:
